@@ -1,2 +1,2 @@
 # ReadIT
-어떻게 사람 이름이 서손윤이에요~
+Use Vue.js CLI

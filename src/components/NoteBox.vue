@@ -1,14 +1,16 @@
 <template>
   <div class="NoteBox">
-    <h1>{{ book }}</h1>
-    <h1>{{ date }}</h1>
-    <h1>{{ essayTitle }}</h1>
-    <h3>{{ author }}</h3>
+    <div id="titleLayout">
+      <p style="display:inline">{{ book }}</p>
+      <p style="display:inline">{{ date }}</p>
+      <div>
+        <p>{{ essayTitle }}</p>
+        <p>{{ author }}</p>
+      </div>
+    </div>
     <div class="contents">
       <p>{{ contents }}</p>
     </div>
-    <h3>Installed CLI Plugins</h3>
-    <h3>Essential Links</h3>
   </div>
 </template>
 
@@ -27,6 +29,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#titleLayout {
+  width: 300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 120px 60px 120px;
+}
+
+.contents {
+  width: 40%;
+  height: 200px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 20px;
+  border: #c4c4c4 solid 5px;
+  background: #c4c4c4;
+}
 h3 {
   margin: 40px 0 0;
 }

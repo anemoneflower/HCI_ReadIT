@@ -1,9 +1,8 @@
 <template>
   <div class="read-my-note">
-    <h1>This is a note page</h1>
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <h1>This is a read my book note page</h1>
     <NoteBox
-      title="Welcome to Your Vue.js App"
+      essayTitle="Welcome to Your Vue.js App"
       author="a"
       book="book"
       date="july"

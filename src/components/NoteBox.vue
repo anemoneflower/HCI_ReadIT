@@ -1,12 +1,10 @@
 <template>
   <div class="NoteBox">
+    <h3 class="titles">{{ book }}</h3>
+    <h2 class="titles">{{ essayTitle }}</h2>
     <div id="titleLayout">
-      <p style="display:inline">{{ book }}</p>
-      <p style="display:inline">{{ date }}</p>
-      <div>
-        <p>{{ essayTitle }}</p>
-        <p>{{ author }}</p>
-      </div>
+      <p>by: {{ author }}</p>
+      <p>date: {{ date }}</p>
     </div>
     <div class="contents">
       <p>{{ contents }}</p>
@@ -29,21 +27,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.titles {
+  width: 500px;
+  margin: auto;
+  text-align: left;
+}
+
 #titleLayout {
-  width: 300px;
+  width: 500px;
   margin: auto;
   display: grid;
-  grid-template-columns: 120px 60px 120px;
+  text-align: left;
+  grid-template-columns: 350px auto;
 }
 
 .contents {
-  width: 40%;
+  width: 500px;
   height: 200px;
   margin: auto;
   padding: 20px;
   border-radius: 20px;
   border: #c4c4c4 solid 5px;
   background: #c4c4c4;
+
+  text-align: left;
 }
 h3 {
   margin: 40px 0 0;

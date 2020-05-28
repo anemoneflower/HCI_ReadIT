@@ -1,12 +1,11 @@
 <template>
   <div class="read-my-note">
-    <h1>This is a read my book note page</h1>
     <NoteBox
-      essayTitle="Welcome to Your Vue.js App"
-      author="a"
-      book="book"
-      date="july"
-      content="bla bla~~"
+      essayTitle="Harry Potter Chapter 1"
+      author="Juho Kim"
+      book="Harry Potter and ..."
+      date="2020/ 01/ 20"
+      contents="Harry Potter went to the zoo."
     />
   </div>
 </template>

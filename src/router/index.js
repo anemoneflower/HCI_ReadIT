@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import WriteNote from "../views/WriteNote.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,12 @@ const routes = [
     component: function() {
       return import("../views/ReadNote.vue");
     }
+  },
+  {
+    path: "/write-note",
+    name: "WriteNote",
+    component: WriteNote,
+    props: true
   }
 ];
 

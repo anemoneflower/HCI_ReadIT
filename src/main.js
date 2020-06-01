@@ -6,6 +6,9 @@ import firebase from 'firebase'
 
 Vue.config.productionTip = false;
 
+
+// Vue.use(VueFire)
+
 var config = {
   apiKey: "AIzaSyAHY5w2-Y3wUspDe3cE45PdCQLikBQq-Xw",
   authDomain: "hci-readit.firebaseapp.com",
@@ -17,7 +20,11 @@ var config = {
   measurementId: "G-999QDH6XFK"
 };
 // Initialize Firebase
-firebase.initializeApp(config);
+
+let app = firebase.initializeApp(config);
+
+export const db = app.database()
+
 
 new Vue({
   router,

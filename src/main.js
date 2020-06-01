@@ -6,6 +6,7 @@ import firebase from 'firebase'
 
 Vue.config.productionTip = false;
 
+
 // Vue.use(VueFire)
 
 var config = {
@@ -19,6 +20,7 @@ var config = {
   measurementId: "G-999QDH6XFK"
 };
 // Initialize Firebase
+
 let app = firebase.initializeApp(config);
 
 export const db = app.database()

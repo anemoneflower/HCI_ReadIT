@@ -22,3 +22,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## To start
+```
+vue ui
+```
+go to tasks -> serve -> run(실행) -> 앱 열기

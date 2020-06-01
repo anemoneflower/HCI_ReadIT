@@ -1,6 +1,6 @@
 <template>
   <div class="WriteNote">
-    <h3 class="bookTitle">{{ book }}</h3>
+    <h3 :book="defaultBook" class="bookTitle" style="margin: auto; text-align: center">{{ book }}</h3>
     <div class="inputLayout">
       <div class="inputRows">
         <p>Title</p>
@@ -15,14 +15,17 @@
           <label for="wholeRange">Whole Book</label>
           <input type="checkbox" id="wholeRange" v-model="isWholeBook"/>
 <!--          @change="check($event)"/>-->
+<!--          <p style="white-space: pre-line">{{ message }}</p>-->
         </div>
       </div>
       <div class="inputRows">
-        <p>Note</p>
-        <input class="content" v-model="content" />
+        <p style="vertical-align: top; margin-top: 0">Note</p>
+        <textarea class="content" v-model="content" style="height: 300px"></textarea>
       </div>
     </div>
-    <button v-on:click="submit_note">CLICK</button>
+    <div style="width: 500px; margin: 10px auto; text-align: right; " >
+      <button v-on:click="submit_note" style="border-radius: 20px; outline: none">CLICK</button>
+    </div>
   </div>
 </template>
 
@@ -30,13 +33,24 @@
 export default {
   name: "WriteNote",
   props: {
-    book: String
+    book: {
+      type: String,
+      default: "You need to find a book First!"
+    }
+  },
+  computed:{
+    defaultBook () {
+      if(this.book === '') return this.book.default;
+      return this.book;
+    }
   },
   data() {
     return {
       title: "",
       isWholeBook: false,
-      content: ""
+      content: "",
+      range1: "",
+      range2: ""
     };
   },
   methods: {

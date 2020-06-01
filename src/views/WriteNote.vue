@@ -20,23 +20,38 @@
       </div>
       <div class="inputRows">
         <p style="vertical-align: top; margin-top: 0">Note</p>
-        <textarea class="content" v-model="content" style="height: 300px"></textarea>
+        <div >
+          <textarea class="content" v-model="content" style="height: 300px; width: 350px"></textarea>
+          <div style="margin: 10px auto; display: grid; grid-template-columns: auto 50px">
+            <div>
+              <label for="share">Do you want to share with others?</label>
+              <input type="checkbox" id="share" v-model="isShare"/>
+            </div>
+            <div style="text-align: right; " >
+              <button v-on:click="submit_note" style="border-radius: 20px; outline: none">CLICK</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div style="width: 500px; margin: 10px auto; text-align: right; " >
-      <button v-on:click="submit_note" style="border-radius: 20px; outline: none">CLICK</button>
-    </div>
+
   </div>
 </template>
 
 <script>
+  // import firebase from "firebase";
+  import {db} from '../main';
+
 export default {
   name: "WriteNote",
+
   props: {
     book: {
       type: String,
       default: "You need to find a book First!"
-    }
+    },
+    bookKey: String,
+    authorKey: String
   },
   computed:{
     defaultBook () {
@@ -50,7 +65,8 @@ export default {
       isWholeBook: false,
       content: "",
       range1: "",
-      range2: ""
+      range2: "",
+      isShare: false
     };
   },
   methods: {
@@ -65,6 +81,26 @@ export default {
       console.log(this.title);
       console.log(this.isWholeBook);
       console.log(this.content);
+      console.log(this.isShare);
+      var noteKey = db.ref('bookNote').push({
+        title: this.title,
+        date: Date.now(),
+        isWholeBook: this.isWholeBook,
+        range1: this.range1,
+        range2: this.range2,
+        content: this.content,
+        share: this.isShare,
+
+        book: this.bookKey,
+        author: this.authorKey,
+
+        view: 0,
+        up: 0
+    }).key;
+      db.ref('bookNote').child(noteKey).update({
+        '_key': noteKey
+      })
+      // TODO: set routing
     }
   }
 };

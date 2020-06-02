@@ -1,162 +1,167 @@
 <template>
-    <div class="wrap">
-        <img v-on:click="toMainPage" id="banner" src="../assets/logo.png"/>
-        <div id="my-page">
-            <btn class="navbtn" @mouseover="myPageIsOpen = true" @mouseleave="myPageIsOpen = false" v-if="sign">{{username}}</btn>
-            <div class="dropdown-contents navbtn" v-if="mypageisOpen">
-                <btn v-on:click="toMyPage">My Page</btn>
-                <btn v-on:click="toMyBookNote">My BookNotes</btn>
-                <btn v-on:click="toMyQuiz">My Quiz</btn>
-            </div>
+    <div class = "wrap">
+        <router-link to="Home"><img id="banner" src="../assets/logo.png"/></router-link>
+        <!-- <ul v-if="isSignIn" class="main-menu"> -->
+        <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn">
+            <li><a @mouseover="bookNoteIsOpen = true">BookNotes</a>
+                <ul id="booknote-submenu" v-if="bookNoteIsOpen">
+                    <li><router-link to="BookNoteBoard"><a>Read Notes</a></router-link></li>
+                    <li><router-link to="WriteNote"><a>Write Note</a></router-link></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn">
+            <li><a @mouseover="quizIsOpen = true">Quiz</a>
+                <ul id="quiz-submenu" v-if="quizIsOpen">
+                    <li><router-link to="SolveQuiz"><a>Solve Quiz</a></router-link></li>
+                    <li><router-link to="MakeQuiz"><a>Make Quiz</a></router-link></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- <ul v-if="isSignIn" class="my-page"> -->
+        <div class = "certification">
+            <ul class="my-page" @mouseleave="myPageIsOpen = false" v-if="isSignIn">
+                <!-- <li><a>{{user.name}}</a> -->
+                <li><a @click="myPageIsOpen = !myPageIsOpen">coolofficials</a>
+                    <ul class="my-page-contents" id="mypage-submenu" v-if="myPageIsOpen">
+                        <li><router-link to="MyPage"><a>My Page</a></router-link></li>
+                        <li><router-link to="MyBookNote"><a>My Notes</a></router-link></li>
+                        <li><router-link to="MyQuiz"><a>My Quiz</a></router-link></li>
+                    </ul>
+                </li>
+            </ul>
+            <router-link to="SignIn"><button id="sign-in-button" v-if="isSignIn==false">Sign In</button></router-link>
         </div>
-        <div id="booknote">
-            <btn class="navbtn" @mouseover="bookNoteIsOpen = true" @mouseleave="bookNoteIsOpen = false" v-on:click="toBookNote" v-if="sign & bookIsSelected">BookNotes</btn>
-            <div class="dropdown-contents navbtn" v-if="bookNoteIsOpen">
-                <btn v-on:click="toReadBookNote">Solve Quiz</btn>
-                <btn v-on:click="toWriteBookNote">Make Quiz</btn>
-            </div>
-        </div>
-        <div id="quiz">
-            <btn class="navbtn" @mouseover="quizisOpen = true" @mouseleave="quizIsOpen = false" v-on:click="toQuiz" v-if="sign & bookIsSelected">Quiz</btn>
-            <div class="dropdown-contents navbtn" v-if="quizIsOpen">
-                <btn v-on:click="toSolveQuiz">Solve Quiz</btn>
-                <btn v-on:click="toMakeQuiz">Make Quiz</btn>
-            </div>
-        </div>
-        <btn id="signIn" class="navbtn" v-if="sign = false" v-on:click="toSignIn">Sign In</btn>
     </div>
 </template>
 
 <script>
 export default {
-    props: {
-        userName: String,
-        bookTitle: String
-    },
     data: function() {
         return {
-            sign: false,
-            myPageIsOpen: false,
-            bookNoteIsOpen: false,
-            quizIsOpen: false,
-            bookIsSelected: false
-        }
-    },
-    methods: {
-        toMainPage: function() {
-            return this.$router.push("Home")
-        },
-        toSignIn: function() {
-            // temporarily route to Home. Need to change into SignIn page.
-            // return this.$router.push("SignIn")
-            return this.$router.push("Home")
-        },
-        toMyPage: function() {
-            // temporarily route to Home. Need to change into MyPage page.
-            // return this.$router.push("MyPage")
-            return this.$router.push("Home")
-        },
-        toMyBookNote: function() {
-            // temporarily route to Home. Need to change into MyBookNote page.
-            // return this.$router.push("MyBookNotes")
-            return this.$router.push("Home")
-        },
-        toMyQuiz: function() {
-            // temporarily route to Home. Need to change into MyQuiz page.
-            // return this.$router.push("MyQuiz")
-            return this.$router.push("Home")
-        },
-        toBookNote: function() {
-            // temporarily route to Home. Need to change into BookNote page.
-            // return this.$router.push("BookName/BookNote")
-            return this.$router.push("Home")
-        },
-        toReadBookNote: function() {
-            // temporarily route to Home. Need to change into Read BookNote page.
-            // return this.$router.push("BookName/ReadBookNote")
-            return this.$router.push("Home")
-        },
-        toWriteBookNote: function() {
-            // temporarily route to Home. Need to change into Write BookNote page.
-            // return this.$router.push("BookName/WriteBookNote")
-            return this.$router.push("Home")
-        },
-        toQuiz: function() {
-            // temporarily route to Home. Need to change into Quiz page.
-            // return this.$router.push("BookName/Quiz")
-            return this.$router.push("Home")
-        },
-        toSolveQuiz: function() {
-            // temporarily route to Home. Need to change into SolveQuiz page.
-            // return this.$router.push("BookName/SolveQuiz")
-            return this.$router.push("Home")
-        },
-        toMakeQuiz: function() {
-            // temporarily route to Home. Need to change into MakeQuiz page.
-            // return this.$router.push("BookName/MakeQuiz")
-            return this.$router.push("Home")
+            isSignIn:true,
+            bookNoteIsOpen:false,
+            quizIsOpen:false,
+            myPageIsOpen:false
         }
     }
 }
 </script>
 
-<style>
-.wrap {
-    height: 60px;
-    width: 1170px;
-    background-color: #fbbc04;
-    color: #3A3A3A;
-    position: relative;
-    font-size: 15px;
-    padding: 25px 15px 0px 15px;
-    text-align: center;
-}
+<style scoped>
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-#banner {
-    height: 40px;
-    float: left;
-}
+    .wrap {
+        position: relative;
+        width: auto;
+        height: 100px;
+        text-align: center;
+        white-space: nowrap;
+        margin: 0px 200px 0px 100px;
+        color: #3a3a3a;
+    }
 
-#my-page {
-    width: 120px;
-    display: inline-block;
-    float: right;
-}
+    #banner {
+        position: absolute;
+        top: 12px;
+        left: 0%;
+    }
 
-#booknote {
-    width: 120px;
-    position: absolute;
-    display: inline-block;
-    left: 600px;
-}
+    a:hover{
+        text-decoration: underline;
+    }
 
-#quiz {
-    width: 90px;
-    position: absolute;
-    display: inline-block;
-    left: 800px;
-}
+    a:visited{
+        text-decoration: none;
+        color: #3a3a3a;
+    }
 
-.dropdown-contents {
-    display: block;
-}
+    a:link{
+        text-decoration: none;
+        color: #3a3a3a;
+    }
 
-.navbtn {
-    padding: 8px 15px 10px 15px;
-    height: 35px;
-    border: none;
-    border-radius: 2px;
-    transition: 0.3s;
-}
+    .main-menu, #booknote-submenu, #quiz-submenu, .my-page, .my-page-contents {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        cursor: pointer;
+    }
 
-.navbtn:hover {
-    opacity: 0.6;
-}
+    #booknote {
+        position: absolute;
+        display: inline-block;
+        top: 27px;
+        right: 230px;
+        width: 160px;
+    }
 
-#signin {
-    width: 75.88px;
-    position: absolute;
-    float: right;
-}
+    #quiz {
+        position: absolute;
+        display: inline-block;
+        top: 27px;
+        right: 70px;
+        width: 160px;
+    }
 
+    .main-menu > li {
+        position: relative;
+        float: left;
+        padding: 8px 15px 10px 15px;
+    }
+
+    .main-menu > li > a {
+        font-size: 25px;
+    }
+
+    #booknote-submenu, #quiz-submenu {
+        position: absolute;
+        display: block;
+    }
+
+    #booknote-submenu > li, #quiz-submenu > li, #mypage-submenu > li {
+        padding: 15px 0px 5px 0px;
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .certification {
+        position: relative;
+    }
+
+    .my-page > li {
+        background-color: #4285f4;
+        letter-spacing: 1px;
+        color: #fff;
+        position: absolute;
+        font-size: 25px;
+        padding: 8px 15px 10px 15px;
+        top: 27px;
+        left: 95%;
+        border-radius: 20px;
+        width: 160px;
+    }
+
+    #mypage-submenu > li > a {
+        color: #fff;
+    }
+
+    #mypage-submenu {
+        position: absoulte;
+    }
+
+    #sign-in-button {
+        background-color: #4285f4;
+        color: #fff;
+        border-radius: 10px;
+        border-width: 0px;
+        padding: 8px 15px 10px 15px;
+        font-size: 24px;
+        position: absolute;
+        left: 100%;
+        top: 27px;
+    }
 </style>

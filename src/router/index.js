@@ -36,6 +36,13 @@ const routes = [
     component: function () {
       return import("../views/Searchpage.vue");
     }
+  },
+  {
+    path: "/autocomplete",
+    name: "Autocomplete",
+    component: function () {
+      return import("../views/Autocomplete.vue");
+    }
   }
 ];
 

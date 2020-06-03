@@ -44,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1cOxtmPYfdWxGtA6ryfKsqzJenw" />
+  <component name="ProjectId" id="1cigpJ1nqzn2eHG2RXVb440u7kh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -54,7 +54,6 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -80,8 +79,8 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="810ef9a7-5727-4cf0-b956-35c1533166ed" name="Default Changelist" comment="" />
-      <created>1590413657180</created>
+      <changelist id="ef933feb-909b-4553-b370-d4fc26b6a0cb" name="Default Changelist" comment="" />
+      <created>1591017009464</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590413657180</updated>

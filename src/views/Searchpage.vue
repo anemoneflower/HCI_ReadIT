@@ -10,10 +10,11 @@
     name: "SearchPage",
     components: { Autocomplete}
   };
+
 </script>
 
 <style>
-    #searchPage{
+   #searchPage{
         margin:0px auto;
         margin-top: 60px;
         width: 400px;

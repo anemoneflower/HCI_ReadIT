@@ -2,10 +2,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import firebase from 'firebase';
-
+import firebase from "firebase";
 
 Vue.config.productionTip = false;
+
+// Vue.use(VueFire)
 
 var config = {
   apiKey: "AIzaSyAHY5w2-Y3wUspDe3cE45PdCQLikBQq-Xw",
@@ -18,7 +19,10 @@ var config = {
   measurementId: "G-999QDH6XFK"
 };
 // Initialize Firebase
-firebase.initializeApp(config);
+
+let app = firebase.initializeApp(config);
+
+export const db = app.database();
 
 export const bookList = new Array();
 export const bookTitle = new Array();

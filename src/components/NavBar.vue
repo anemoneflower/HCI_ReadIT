@@ -61,7 +61,7 @@ export default {
         text-align: center;
         white-space: nowrap;
         margin: 0px 200px 0px 100px;
-        color: #3a3a3a;
+        color:#3a3a3a;
     }
 
     #banner {
@@ -150,7 +150,7 @@ export default {
     }
 
     #mypage-submenu {
-        position: absoulte;
+        position: absolute;
     }
 
     #sign-in-button {

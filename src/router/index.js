@@ -40,7 +40,7 @@ const routes = [
   },
   {
     path: "/search",
-    name: "Search",
+    name: "SearchPage",
     component: function() {
       return import("../views/Searchpage.vue");
     }
@@ -50,6 +50,7 @@ const routes = [
     name: "Booklist",
     component: function () {
       return import("../views/Booklist.vue");
+    }
   },
   {
     path: "/make-quiz",

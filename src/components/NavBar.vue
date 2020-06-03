@@ -33,6 +33,7 @@
             <router-link to="SignIn"><button id="sign-in-button" v-if="isSignIn==false">Sign In</button></router-link>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -45,7 +46,7 @@ export default {
             myPageIsOpen:false
         }
     }
-}
+  }
 </script>
 
 <style scoped>

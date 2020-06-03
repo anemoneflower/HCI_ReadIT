@@ -6,7 +6,6 @@ import WriteNote from "../views/WriteNote.vue";
 
 // import Search from "@/components/Search";
 
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -29,7 +28,7 @@ const routes = [
     path: "/read-note",
     name: "ReadNote",
 
-    component: function () {
+    component: function() {
       return import("../views/ReadNote.vue");
     }
   },
@@ -38,13 +37,19 @@ const routes = [
     name: "WriteNote",
     component: WriteNote,
     props: true
-  }
-  ,
+  },
   {
     path: "/search",
     name: "Search",
-    component: function () {
+    component: function() {
       return import("../views/Searchpage.vue");
+    }
+  },
+  {
+    path: "/make-quiz",
+    name: "MakeQuiz",
+    component: function() {
+      return import("../views/MakeQuiz.vue");
     }
   }
 ];

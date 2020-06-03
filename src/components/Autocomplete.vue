@@ -1,7 +1,7 @@
 <template>
     <div class="autocomplete">
         <div class="popover">
-            <input id="input" type="text"
+            <input autocomplete="off" id="input" type="text"
                    v-model="title"
                    placeholder="Search"
                    >
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import {bookList, bookTitle, selectedList} from "../main";
+  import {bookList, bookTitle, searchedList} from "../main";
 
   export default {
     name: "Autocomplete",
@@ -26,7 +26,6 @@
       return{
         selectedBook:null,
         title:"",
-        selected:0,
         books: bookTitle,
       };
     },
@@ -34,13 +33,11 @@
       bookSelected(index){
         document.getElementById("input").value=this.matches[index]
         this.selectedBook=this.matches[index]
-        // this.selected=index;
-        console.log(this.matches[index]);
         this.searchBook();
       },
       searchBook(){
-        selectedList.splice(0, selectedList.length);
-        var book = this.selectedBook;
+        searchedList.splice(0, searchedList.length);
+        var book = document.getElementById("input").value;
         if(book=='')
         {
           book.focus();
@@ -51,7 +48,7 @@
           var title = (bookList[i].title).toUpperCase();
           var checkValue = title.indexOf(book.toUpperCase());
           if(checkValue!=-1) {
-            selectedList.push(bookList[i]);
+            searchedList.push(bookList[i]);
             checkList.splice(i+idx,1);
             idx--;
           }
@@ -59,12 +56,11 @@
         console.log(checkList);
         if(checkList.length!=0) {
           for (var j = 0; j < checkList.length; j++) {
-            if (selectedList[0].series == checkList[j].series) {
-              selectedList.push(checkList[j]);
+            if (searchedList[0].series == checkList[j].series) {
+              searchedList.push(checkList[j]);
             }
           }
         }
-        console.log(selectedList);
         this.$router.push('/book-list');
 
       }

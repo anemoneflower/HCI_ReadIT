@@ -2,13 +2,11 @@
     <div>
         <div class="wrapper" @mouseover="mouseOver" @mouseout="mouseOut">
             <img class="img" :src= book.img style="position: relative;">
-            <md-button  v-show="Hide" class="btn1" style="position: absolute">Board</md-button>
-            <md-button  v-show="Hide" class="btn2" style="position: absolute">Quiz</md-button>
+<!--            <md-button  v-show="Hide" class="btn1" style="position: absolute">Board</md-button>-->
+<!--            <md-button  v-show="Hide" class="btn2" style="position: absolute">Quiz</md-button>-->
         </div>
         <h3 class="title">{{ book.title }}</h3>
         <h4>{{ book.publisher }}</h4>
-<!--        <p class="title">{{ book.title }}</p>-->
-<!--        <p class="publisher"> {{ book.publisher }}</p>-->
     </div>
 </template>
 
@@ -47,14 +45,14 @@
         margin-left: auto;
         margin-right: auto;
     }
-    .btn1 {
-        left: -2%;
-        top:15%;
-        background-color: #c4c4c4;
-    }
-    .btn2 {
-        left: 6%;
-        top:43%;
-        background-color: #FBBC04;
-    }
+    /*.btn1 {*/
+    /*    left: -2%;*/
+    /*    top:15%;*/
+    /*    background-color: #c4c4c4;*/
+    /*}*/
+    /*.btn2 {*/
+    /*    left: 6%;*/
+    /*    top:43%;*/
+    /*    background-color: #FBBC04;*/
+    /*}*/
 </style>

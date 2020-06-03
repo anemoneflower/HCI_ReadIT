@@ -15,8 +15,7 @@
 
 <script>
   import Book from './Book.vue'
-  import {selectedList} from "../main";
-  // import {selectedList} from "../main";
+  import {searchedList} from "../main";
 
   export default {
     components:{
@@ -25,7 +24,7 @@
     data() {
       return{
         books:
-          selectedList
+        searchedList
       }
     }
   }

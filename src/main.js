@@ -22,7 +22,7 @@ firebase.initializeApp(config);
 
 export const bookList = new Array();
 export const bookTitle = new Array();
-export let selectedList = new Array();
+export let searchedList = new Array();
 
 firebase.database().ref('/Book').once('value',function(snapshot){
 

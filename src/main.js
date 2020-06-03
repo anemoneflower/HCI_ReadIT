@@ -2,10 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import firebase from 'firebase'
+import firebase from "firebase";
 
 Vue.config.productionTip = false;
-
 
 // Vue.use(VueFire)
 
@@ -23,8 +22,7 @@ var config = {
 
 let app = firebase.initializeApp(config);
 
-export const db = app.database()
-
+export const db = app.database();
 
 new Vue({
   router,

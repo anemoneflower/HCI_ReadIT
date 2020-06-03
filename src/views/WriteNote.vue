@@ -1,6 +1,12 @@
 <template>
   <div class="WriteNote">
-    <h3 :book="defaultBook" class="bookTitle" style="margin: auto; text-align: center">{{ book }}</h3>
+    <h3
+      :book="defaultBook"
+      class="bookTitle"
+      style="margin: auto; text-align: center"
+    >
+      {{ book }}
+    </h3>
     <div class="inputLayout">
       <div class="inputRows">
         <p>Title</p>
@@ -9,38 +15,59 @@
       <div class="inputRows">
         <p>Range</p>
         <div id="rangeGroup">
-          <input class="rangeInput" v-model="range1" type="number" :disabled="isWholeBook"/>
+          <input
+            class="rangeInput"
+            v-model="range1"
+            type="number"
+            :disabled="isWholeBook"
+          />
           ~
-          <input class="rangeInput" v-model="range2" type="number" :disabled="isWholeBook" style="margin-right: 10px"/>
+          <input
+            class="rangeInput"
+            v-model="range2"
+            type="number"
+            :disabled="isWholeBook"
+            style="margin-right: 10px"
+          />
           <label for="wholeRange">Whole Book</label>
-          <input type="checkbox" id="wholeRange" v-model="isWholeBook"/>
-<!--          @change="check($event)"/>-->
-<!--          <p style="white-space: pre-line">{{ message }}</p>-->
+          <input type="checkbox" id="wholeRange" v-model="isWholeBook" />
+          <!--          @change="check($event)"/>-->
+          <!--          <p style="white-space: pre-line">{{ message }}</p>-->
         </div>
       </div>
       <div class="inputRows">
         <p style="vertical-align: top; margin-top: 0">Note</p>
-        <div >
-          <textarea class="content" v-model="content" style="height: 300px; width: 350px"></textarea>
-          <div style="margin: 10px auto; display: grid; grid-template-columns: auto 50px">
+        <div>
+          <textarea
+            class="content"
+            v-model="content"
+            style="height: 300px; width: 350px"
+          ></textarea>
+          <div
+            style="margin: 10px auto; display: grid; grid-template-columns: auto 50px"
+          >
             <div>
               <label for="share">Do you want to share with others?</label>
-              <input type="checkbox" id="share" v-model="isShare"/>
+              <input type="checkbox" id="share" v-model="isShare" />
             </div>
-            <div style="text-align: right; " >
-              <button v-on:click="submit_note" style="border-radius: 20px; outline: none">CLICK</button>
+            <div style="text-align: right; ">
+              <button
+                v-on:click="submit_note"
+                style="border-radius: 20px; outline: none"
+              >
+                CLICK
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-  // import firebase from "firebase";
-  import {db} from '../main';
+// import firebase from "firebase";
+import { db } from "../main";
 
 export default {
   name: "WriteNote",
@@ -53,9 +80,9 @@ export default {
     bookKey: String,
     authorKey: String
   },
-  computed:{
-    defaultBook () {
-      if(this.book === '') return this.book.default;
+  computed: {
+    defaultBook() {
+      if (this.book === "") return this.book.default;
       return this.book;
     }
   },
@@ -82,7 +109,7 @@ export default {
       console.log(this.isWholeBook);
       console.log(this.content);
       console.log(this.isShare);
-      var noteKey = db.ref('bookNote').push({
+      var noteKey = db.ref("bookNote").push({
         title: this.title,
         date: Date.now(),
         isWholeBook: this.isWholeBook,
@@ -96,10 +123,12 @@ export default {
 
         view: 0,
         up: 0
-    }).key;
-      db.ref('bookNote').child(noteKey).update({
-        '_key': noteKey
-      })
+      }).key;
+      db.ref("bookNote")
+        .child(noteKey)
+        .update({
+          _key: noteKey
+        });
       // TODO: set routing
     }
   }
@@ -116,7 +145,7 @@ p {
   text-align: left;
 }
 
-.rangeInput{
+.rangeInput {
   width: 30px;
 }
 

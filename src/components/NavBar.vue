@@ -5,16 +5,16 @@
         <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn">
             <li><a @mouseover="bookNoteIsOpen = true">BookNotes</a>
                 <ul id="booknote-submenu" v-if="bookNoteIsOpen">
-                    <li><router-link to="BookNoteBoard"><a>Read Notes</a></router-link></li>
-                    <li><router-link to="WriteNote"><a>Write Note</a></router-link></li>
+                    <li><router-link to="BookNoteBoard"><a @click="bookNoteIsOpen = false">Read Notes</a></router-link></li>
+                    <li><router-link to="WriteNote"><a @click="bookNoteIsOpen = false">Write Note</a></router-link></li>
                 </ul>
             </li>
         </ul>
         <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn">
             <li><a @mouseover="quizIsOpen = true">Quiz</a>
                 <ul id="quiz-submenu" v-if="quizIsOpen">
-                    <li><router-link to="SolveQuiz"><a>Solve Quiz</a></router-link></li>
-                    <li><router-link to="MakeQuiz"><a>Make Quiz</a></router-link></li>
+                    <li><router-link to="SolveQuiz"><a @click="quizIsOpen = false">Solve Quiz</a></router-link></li>
+                    <li><router-link to="MakeQuiz"><a @click="quizIsOpen = false">Make Quiz</a></router-link></li>
                 </ul>
             </li>
         </ul>
@@ -24,16 +24,15 @@
                 <!-- <li><a>{{user.name}}</a> -->
                 <li><a @click="myPageIsOpen = !myPageIsOpen">coolofficials</a>
                     <ul class="my-page-contents" id="mypage-submenu" v-if="myPageIsOpen">
-                        <li><router-link to="MyPage"><a>My Page</a></router-link></li>
-                        <li><router-link to="MyBookNote"><a>My Notes</a></router-link></li>
-                        <li><router-link to="MyQuiz"><a>My Quiz</a></router-link></li>
+                        <li><router-link to="MyPage"><a @click="myPageIsOpen = false">My Page</a></router-link></li>
+                        <li><router-link to="MyBookNote"><a @click="myPageIsOpen = false">My Notes</a></router-link></li>
+                        <li><router-link to="MyQuiz"><a @click="myPageIsOpen = false">My Quiz</a></router-link></li>
                     </ul>
                 </li>
             </ul>
             <router-link to="SignIn"><button id="sign-in-button" v-if="isSignIn==false">Sign In</button></router-link>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -46,7 +45,7 @@ export default {
             myPageIsOpen:false
         }
     }
-  }
+}
 </script>
 
 <style scoped>
@@ -134,7 +133,7 @@ export default {
     }
 
     .my-page > li {
-        background-color: #4285f4;
+        background-color: #F37022;
         letter-spacing: 1px;
         color: #fff;
         position: absolute;
@@ -155,7 +154,7 @@ export default {
     }
 
     #sign-in-button {
-        background-color: #4285f4;
+        background-color: #F37022;
         color: #fff;
         border-radius: 10px;
         border-width: 0px;
@@ -164,5 +163,7 @@ export default {
         position: absolute;
         left: 100%;
         top: 27px;
+        cursor: pointer;
+        outline: none;
     }
 </style>

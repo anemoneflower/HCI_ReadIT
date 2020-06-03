@@ -46,6 +46,12 @@ const routes = [
     }
   },
   {
+    path: "/book-list",
+    name: "Booklist",
+    component: function () {
+      return import("../views/Booklist.vue");
+  },
+  {
     path: "/make-quiz",
     name: "MakeQuiz",
     component: function() {

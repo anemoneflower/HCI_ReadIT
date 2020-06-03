@@ -71,7 +71,6 @@ import { db } from "../main";
 
 export default {
   name: "WriteNote",
-
   props: {
     book: {
       type: String,

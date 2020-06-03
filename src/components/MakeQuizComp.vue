@@ -31,13 +31,18 @@
         min
       </div>
     </div>
+    <MakeQuizQuestionComp />
     <!--    Make Quiz content comp.-->
   </div>
 </template>
 
 <script>
+import MakeQuizQuestionComp from "./MakeQuizQuestionComp.vue";
 export default {
-  name: "MakeQuizComp"
+  name: "MakeQuizComp",
+  components: {
+    MakeQuizQuestionComp
+  }
 };
 </script>
 

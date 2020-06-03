@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef933feb-909b-4553-b370-d4fc26b6a0cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/MakeQuizComp.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/MakeQuiz.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MakeQuizQuestionComp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Searchpage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Searchpage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MakeQuizComp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MakeQuizComp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/WriteNote.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WriteNote.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,7 +62,7 @@
       <updated>1591017009464</updated>
       <workItem from="1591017012416" duration="2244000" />
       <workItem from="1591079106112" duration="8441000" />
-      <workItem from="1591162097503" duration="607000" />
+      <workItem from="1591162097503" duration="4376000" />
     </task>
     <servers />
   </component>

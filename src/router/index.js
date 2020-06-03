@@ -37,11 +37,18 @@ const routes = [
       return import("../views/Searchpage.vue");
     }
   },
+  // {
+  //   path: "/autocomplete",
+  //   name: "Autocomplete",
+  //   component: function () {
+  //     return import("../views/Autocomplete.vue");
+  //   }
+  // },
   {
-    path: "/autocomplete",
-    name: "Autocomplete",
+    path: "/book-list",
+    name: "Booklist",
     component: function () {
-      return import("../views/Autocomplete.vue");
+      return import("../views/Booklist.vue");
     }
   }
 ];

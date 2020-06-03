@@ -21,6 +21,24 @@ var config = {
 firebase.initializeApp(config);
 
 export const bookList = new Array();
+export const bookTitle = new Array();
+export let selectedList = new Array();
+
+firebase.database().ref('/Book').once('value',function(snapshot){
+
+  var myValue = snapshot.val();
+  var keyList = Object.keys(myValue);
+  for(var i=0;i<keyList.length;i++) {
+    var myKey = keyList[i];
+    if(i<7){
+      var title = myValue[myKey].title;
+      bookTitle.push(title);
+    }
+    var myBook = myValue[myKey];
+    myBook.key = myKey;
+    bookList.push(myBook);
+  }
+});
 
 new Vue({
   router,

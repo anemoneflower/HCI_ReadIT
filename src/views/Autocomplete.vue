@@ -3,7 +3,7 @@
 <!--        <img alt="glass" class="search-icon" src="../assets/magnifying-glass.png" />-->
 <!--        <router-link to='/book-list'><button class="searchButton" v-on:click="searchBook">search</button></router-link>-->
 
-        <md-autocomplete class="searchbar" v-model="selectedBook" :md-options="bookTitle" md-layout="box" md-dense :md-open-on-focus="false">
+        <md-autocomplete class="searchbar" v-model="selectedBook" :md-options="bookT" md-layout="box" md-dense :md-open-on-focus="false">
             <label class="search-text">Search your book here.</label> </md-autocomplete>
         <router-link to='/book-list'><md-button class="btn" v-on:click="searchBook">SEARCH</md-button></router-link>
 <!--        <md-toolbar class="toolbar">-->
@@ -31,43 +31,43 @@
 
 
 <script>
-  import firebase from 'firebase'
-  import {bookList} from "../main";
+  // import firebase from 'firebase'
+  import {bookList, bookTitle, selectedList} from "../main";
   export default {
     name: "Autocomplete",
     data: () =>({
       selectedBook:'',
-      bookTitle:[
-        "Harry Potter and the Philosopher's Stone",
-        "Harry Potter and the Goblet of Fire",
-        "Harry Potter and the Secret Chamber",
-        "Harry Potter and the Prisoner of Azkaban",
-        "Harry Potter and the Order of the Phoenix",
-        "Harry Potter and the Half-blooded Prince",
-        "Harry Potter and the Deathly Hollows"
-      ]
+      bookT:bookTitle
     }),
     methods:{
           searchBook(){
-            // console.log(this.book);
+            // selectedList = [];
+            selectedList.splice(0, selectedList.length);
             var book = this.selectedBook;
-            firebase.database().ref('/Book').once('value',function(snapshot){
-
-              var myValue = snapshot.val();
-              var keyList = Object.keys(myValue);
-              for(var i=0;i<keyList.length;i++) {
-                var myKey = keyList[i];
-                var title = (myValue[myKey].title).toUpperCase();
-                // console.log(title);
-                var checkValue = title.indexOf(book.toUpperCase());
-                // console.log(book);
-                if (checkValue != -1) {
-                  // console.log(myValue[myKey]);
-                  bookList.push(myValue[myKey]);
+            if(book=='')
+            {
+              book.focus();
+            }
+            var checkList = JSON.parse(JSON.stringify(bookList));
+            var idx=0;
+            for(var i=0;i<bookList.length;i++) {
+              var title = (bookList[i].title).toUpperCase();
+              var checkValue = title.indexOf(book.toUpperCase());
+              if(checkValue!=-1) {
+                selectedList.push(bookList[i]);
+                checkList.splice(i+idx,1);
+                idx--;
+              }
+            }
+            console.log(checkList);
+            if(checkList.length!=0) {
+              for (var j = 0; j < checkList.length; j++) {
+                if (selectedList[0].series == checkList[j].series) {
+                  selectedList.push(checkList[j]);
                 }
               }
-              console.log(bookList);
-            });
+            }
+            console.log(selectedList);
           }
         }
   }

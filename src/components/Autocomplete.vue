@@ -1,10 +1,16 @@
 <template>
     <div class="autocomplete">
-        <div class="popover">
-            <input autocomplete="off" id="input" type="text"
+        <ul class="popover">            
+            <li><input autocomplete="off" id="input" type="text"
                    v-model="title"
-                   placeholder="Search"
-                   >
+                   placeholder="Search your book here."
+                   v-focus
+                   @focus="visibleOptions=true"
+                   @focusout="visibleOptions=false"
+                   />
+            <a href="#"><img class="glass" src="../assets/magnifying-glass.png" title="this is search bar"></a>
+            </li>
+            <li v-if="visibleOptions">
             <div class="options">
                 <ul>
                     <li :key=match v-for="(match,index) in matches"
@@ -12,7 +18,8 @@
                     v-text=match></li>
                 </ul>
             </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -27,7 +34,15 @@
         selectedBook:null,
         title:"",
         books: bookTitle,
+        visibleOptions: true
       };
+    },
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus()
+        }
+      }
     },
     methods:{
       bookSelected(index){
@@ -62,8 +77,7 @@
           }
         }
         this.$router.push('/book-list');
-
-      }
+      },
       // keyup(){
       //   if(this.selected==0){
       //     return;
@@ -96,43 +110,78 @@
         margin-right: auto;
     }
     .popover{
-        height: 60px;
-        border:2px solid lightgray;
-        /*position:absolute;*/
-        top:40px;
+        margin: 0 auto;
+        padding: 0;
+        width: 575px;
+        border:1px solid #dcdcdc;
+        position:relative;
         left:0;
         right :0;
-        background-color: white;
-        border-radius:3px;
-        text-align: center;
+        border-radius:23px;
+        list-style-type: none;
     }
-    .popover input
+    .popover:hover {
+      box-shadow: 1px 1px 8px 1px #dcdcdc;
+    }
+
+    .popover:focus-within {
+      box-shadow: 1px 1px 8px 1px #dcdcdc;
+      outline: none;
+    }
+
+    .glass {
+      height: 20px;
+      position: relative;
+      top: 5px;
+      left: 10px;
+    }
+
+    #input
     {
-        width: 95%;
-        margin-top:7px;
-        height: 40px;
-        font-size:15px;
+        width: 500px;
+        outline: none;
+        border: none;
+        height: 45px;
+        font-size:16px;
     }
+
     .options{
+        width: 520px;
+        padding: none;
+        position: relative;
+        left: 27.3px;
+        margin: none;
         max-height: 150px;
-        overflow-y:scroll;
-        margin-top:5px;
+        overflow-y:auto;
+        overflow-x:hidden;
     }
+
+    .options::-webkit-scrollbar{
+        width: 10px;
+        height: 150px;
+    }
+
+    .options::-webkit-scrollbar-track{
+      background-color: #dcdcdc;
+    }
+
+    .options::-webkit-scrollbar-thumb{
+      background-color: #c4c4c4;
+    }
+
     .options ul{
         list-style-type:none;
         text-align:left;
         padding-left:0;
     }
     .options ul li{
-        border-botton:1px solid lightgray;
-        padding:10px;
+        border-bottom: none;
+        padding:10px 0px 10px 0px;
         cursor:pointer;
-        background-color: lightgray;
+        background-color: white;
     }
     .options ul li:hover {
-        background-color: gray;
-        color:white;
-        font-weight:600;
+        background-color: #dcdcdc;
     }
 
 </style>

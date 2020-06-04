@@ -56,7 +56,7 @@ export default {
 
     .wrap {
         position: relative;
-        width: auto;
+        min-width: 650px;
         height: 100px;
         text-align: center;
         white-space: nowrap;

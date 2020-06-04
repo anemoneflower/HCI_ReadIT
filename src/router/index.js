@@ -58,6 +58,13 @@ const routes = [
     component: function() {
       return import("../views/MakeQuiz.vue");
     }
+  },
+  {
+    path: "/solve-quiz",
+    name: "SolveQuiz",
+    component: function() {
+      return import("../views/SolveQuiz.vue");
+    }
   }
 ];
 

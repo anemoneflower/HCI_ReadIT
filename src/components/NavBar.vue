@@ -1,20 +1,20 @@
 <template>
     <div class = "wrap">
-        <router-link to="Home"><img id="banner" src="../assets/logo.png"/></router-link>
+        <router-link to="/"><img id="banner" src="../assets/logo.png"/></router-link>
         <!-- <ul v-if="isSignIn" class="main-menu"> -->
         <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn">
             <li><a @mouseover="bookNoteIsOpen = true">BookNotes</a>
                 <ul id="booknote-submenu" v-if="bookNoteIsOpen">
-                    <li><router-link to="BookNoteBoard"><a @click="bookNoteIsOpen = false">Read Notes</a></router-link></li>
-                    <li><router-link to="WriteNote"><a @click="bookNoteIsOpen = false">Write Note</a></router-link></li>
+                    <li><router-link to="/book-note-board"><a @click="bookNoteIsOpen = false">Read Notes</a></router-link></li>
+                    <li><router-link to="/write-note"><a @click="bookNoteIsOpen = false">Write Note</a></router-link></li>
                 </ul>
             </li>
         </ul>
         <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn">
             <li><a @mouseover="quizIsOpen = true">Quiz</a>
                 <ul id="quiz-submenu" v-if="quizIsOpen">
-                    <li><router-link to="SolveQuiz"><a @click="quizIsOpen = false">Solve Quiz</a></router-link></li>
-                    <li><router-link to="MakeQuiz"><a @click="quizIsOpen = false">Make Quiz</a></router-link></li>
+                    <li><router-link to="/solve-quiz"><a @click="quizIsOpen = false">Solve Quiz</a></router-link></li>
+                    <li><router-link to="/make-quiz"><a @click="quizIsOpen = false">Make Quiz</a></router-link></li>
                 </ul>
             </li>
         </ul>
@@ -24,13 +24,13 @@
                 <!-- <li><a>{{user.name}}</a> -->
                 <li><a @click="myPageIsOpen = !myPageIsOpen">coolofficials</a>
                     <ul class="my-page-contents" id="mypage-submenu" v-if="myPageIsOpen">
-                        <li><router-link to="MyPage"><a @click="myPageIsOpen = false">My Page</a></router-link></li>
-                        <li><router-link to="MyBookNote"><a @click="myPageIsOpen = false">My Notes</a></router-link></li>
-                        <li><router-link to="MyQuiz"><a @click="myPageIsOpen = false">My Quiz</a></router-link></li>
+                        <li><router-link to="/my-page"><a @click="myPageIsOpen = false">My Page</a></router-link></li>
+                        <li><router-link to="/my-book-note"><a @click="myPageIsOpen = false">My Notes</a></router-link></li>
+                        <li><router-link to="/my-quiz"><a @click="myPageIsOpen = false">My Quiz</a></router-link></li>
                     </ul>
                 </li>
             </ul>
-            <router-link to="SignIn"><button id="sign-in-button" v-if="isSignIn==false">Sign In</button></router-link>
+            <router-link to="/sign-in"><button id="sign-in-button" v-if="isSignIn==false">Sign In</button></router-link>
         </div>
     </div>
 </template>

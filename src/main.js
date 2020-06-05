@@ -27,7 +27,7 @@ export const db = app.database();
 export const bookList = new Array();
 export const bookTitle = new Array();
 export let searchedList = new Array();
-export const answerList = new Array();
+export let isSignin = false;
 
 firebase.database().ref('/Book').once('value',function(snapshot){
 
@@ -44,6 +44,7 @@ firebase.database().ref('/Book').once('value',function(snapshot){
     bookList.push(myBook);
   }
 });
+
 
 new Vue({
   router,

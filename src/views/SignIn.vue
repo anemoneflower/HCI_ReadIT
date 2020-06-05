@@ -5,21 +5,49 @@
         </div>
         <div class="id">
             <p class="textId">ID</p>
-            <input id="inputId" type="text" placeholder="ID">
+            <input id="inputId" v-model="userId" type="text" placeholder="ID">
         </div>
         <div class="password">
             <p class="textPw">Password</p>
-            <input id="inputPw" type="password" placeholder="password">
+            <input id="inputPw" v-model="userPw" type="password" placeholder="password">
         </div>
         <div class="submit">
-            <button id="btn">SIGN IN</button>
+            <button id="btn" @click="signIn">SIGN IN</button>
         </div>
     </div>
 </template>
 
 <script>
+    import firebase from "firebase";
+
+
     export default {
-        name: "SignIn"
+        name: "SignIn",
+        data(){
+            return{
+                userId:"",
+                userPw:""
+            };
+        },
+        methods: {
+            signIn(){
+
+                var id = this.userId;
+                var pw = this.userPw;
+                firebase.database().ref('/user').once('value',function(snapshot){
+                    var myValue = snapshot.val();
+                    var keyList = Object.keys(myValue);
+                    // console.log(id);
+                    for(var i=0;i<keyList.length;i++) {
+                        var myKey = keyList[i];
+                        if(myValue[myKey].id==id
+                            && myValue[myKey].pw==pw){
+                                console.log("success");
+                        }
+                    }
+                });
+            }
+        }
     }
 </script>
 

@@ -2,7 +2,7 @@
     <div class = "wrap">
         <router-link to="/"><img id="banner" src="../assets/logo.png"/></router-link>
         <!-- <ul v-if="isSignIn" class="main-menu"> -->
-        <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn & isSelected">
+        <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn && isSelected">
             <li><a @mouseover="bookNoteIsOpen = true">BookNotes</a>
                 <ul id="booknote-submenu" v-if="bookNoteIsOpen">
                     <li><router-link to="/book-note-board"><a @click="bookNoteIsOpen = false">Read Notes</a></router-link></li>
@@ -10,7 +10,7 @@
                 </ul>
             </li>
         </ul>
-        <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn & isSelected">
+        <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn && isSelected">
             <li><a @mouseover="quizIsOpen = true">Quiz</a>
                 <ul id="quiz-submenu" v-if="quizIsOpen">
                     <li><router-link to="/solve-quiz"><a @click="quizIsOpen = false">Solve Quiz</a></router-link></li>

@@ -65,6 +65,13 @@ const routes = [
     component: function() {
       return import("../views/SolveQuiz.vue");
     }
+  },
+  {
+    path: "/signin",
+    name: "SignIn",
+    component: function() {
+      return import("../views/SignIn.vue");
+    }
   }
 ];
 

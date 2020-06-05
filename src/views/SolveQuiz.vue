@@ -3,17 +3,32 @@
         <div class="QuizTitle">
             <h1>Quiz Chapter:2</h1>
         </div>
+        <div class="submit">
+            <button id="submitbtn"> Submit </button>
+        </div>
         <div class="body">
             <div class="checkList">
-                <SolveQuizCheck/>
+                <table id="check">
+                    <tbody>
+                    <tr>
+                        <td id=1 @click="move(1)"><CheckBox num="1" isQuiz="true" /></td>
+                        <td id=2 @click="move(2)"><CheckBox num="2" isQuiz="true" /></td>
+                        <td id=3 @click="move(3)"><CheckBox num="3" isQuiz="true" /></td>
+                        <td id=4 @click="move(4)"><CheckBox num="4" isQuiz="false" /></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class = "problem">
                 <SolveQuizComp
                         :Question = Question
+                        :num = num
                         :select1 = select1
                         :select2 = select2
                         :select3 = select3
-                        :select4 = select4 />
+                        :select4 = select4
+                        v-model="checkedAnswer"
+                />
                 <div class="button">
                     <button id="prevBtn" @click="prev">Prev</button>
                     <button id="nextBtn" @click="next">Next</button>
@@ -25,7 +40,7 @@
 
 <script>
     import SolveQuizComp from "../components/SolveQuizComp";
-    import SolveQuizCheck from "../components/SolveQuizCheck";
+    import CheckBox from "../components/CheckBox";
     // import firebase from "firebase";
     //
     // var problemkey = "-M8yi9kkxeB-5JSa3Fg4";
@@ -66,16 +81,22 @@
     export default {
 
         name: "SolveQuiz",
-        components: {SolveQuizCheck,SolveQuizComp},
+        components: {CheckBox,SolveQuizComp},
+        props:{
+            checkedAnswer: Array
+        },
         data() {
             return{
                 Question: "Q"+(idx+1)+"   : "+problemSet[idx].question,
+                num: idx,
                 select1: problemSet[idx].select1,
                 select2: problemSet[idx].select2,
                 select3: problemSet[idx].select3,
-                select4: problemSet[idx].select4
+                select4: problemSet[idx].select4,
+                checked:{}
             }
         },
+
         methods: {
             prev() {
                 if(idx!=0) {
@@ -86,10 +107,13 @@
                     this.select3 = problemSet[idx].select3;
                     this.select4 = problemSet[idx].select4;
                 }
+                else{
+                    alert("This is first question!");
+                }
 
             },
             next(){
-                if(idx!=4) {
+                if(idx!=problemSet.length-1) {
                     idx++;
                     this.Question = "Q"+(idx+1)+"   : "+problemSet[idx].question;
                     this.select1 = problemSet[idx].select1;
@@ -97,6 +121,19 @@
                     this.select3 = problemSet[idx].select3;
                     this.select4 = problemSet[idx].select4;
                 }
+                else{
+                    alert("This is last question!");
+                }
+            },
+            move(id){
+
+                idx = id-1;
+                console.log(id);
+                this.Question = "Q"+(idx+1)+"   : "+problemSet[idx].question;
+                this.select1 = problemSet[idx].select1;
+                this.select2 = problemSet[idx].select2;
+                this.select3 = problemSet[idx].select3;
+                this.select4 = problemSet[idx].select4;
             }
         }
     }
@@ -108,13 +145,11 @@
         margin-left: auto;
         margin-right : 750px;
         padding-top: 15px;
-        padding-bottom: 20px;
+        /*padding-bottom: 20px;*/
     }
     .checkList{
         width:200px;
         height: 200px;
-        /*padding-right: 50px;*/
-        /*margin-right: 50px;*/
         margin-left: auto;
         margin-right: 20px;
     }
@@ -143,13 +178,41 @@
         border-radius: 20px;
         margin-right: 10px;
         background-color: lightgray;
-        border: solid 1px;
+        border: 0px;
     }
     #nextBtn{
         width: 60px;
         height: 25px;
         border-radius: 20px;
         background-color: lightgray;
-        border: solid 1px;
+        border: 0px;
+    }
+    .submit{
+        /*text-align: right;*/
+        /*margin-top: 15px;*/
+        margin-left: 860px;
+        margin-right : auto;
+        padding-bottom: 20px;
+    }
+    #submitbtn{
+        width: 100px;
+        height: 40px;
+        border-radius: 20px;
+        border: 0px;
+        background-color: #F37022;
+        color: white;
+        font-size: large;
+    }
+    .checkList{
+        width:200px;
+        border:1px solid #3a3a3a;
+        border-radius: 25px;
+        grid-template-columns: 100px auto;
+    }
+    #check{
+        width: 95%;
+        margin-top: 9px;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>

@@ -27,6 +27,7 @@ export const db = app.database();
 export const bookList = new Array();
 export const bookTitle = new Array();
 export let searchedList = new Array();
+export const answerList = new Array();
 
 firebase.database().ref('/Book').once('value',function(snapshot){
 

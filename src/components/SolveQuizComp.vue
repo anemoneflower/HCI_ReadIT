@@ -4,21 +4,22 @@
             <h2>{{Question}}</h2>
         </div>
         <div class="problem">
-            <input type="radio" id="problem1"/>
+            <input type="checkbox" value="1" id="problem1" v-model="checkedAnswer" />
             <label class="label" for="problem1">{{select1}}</label>
         </div>
         <div class="problem">
-            <input type="radio" id="problem2"/>
+            <input type="checkbox" value="2" id="problem2" v-model="checkedAnswer"/>
             <label class="label" for="problem2">{{select2}}</label>
         </div>
         <div class="problem">
-            <input type="radio" id="problem3"/>
+            <input type="checkbox" value="3" id="problem3" v-model="checkedAnswer" />
             <label class="label" for="problem3">{{select3}}</label>
         </div>
         <div class="problem">
-            <input type="radio" id="problem4"/>
+            <input type="checkbox" value="4" id="problem4" v-model="checkedAnswer" />
             <label class="label" for="problem4">{{select4}}</label>
         </div>
+        <span>체크한 이름: {{ checkedAnswer }}</span>
 <!--        <div class="button">-->
 <!--            <button id="prevBtn">Prev</button>-->
 <!--            <button id="nextBtn">Next</button>-->
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+
     export default {
         name: "SolveQuizComp",
         props: {
@@ -35,6 +37,12 @@
             select2: String,
             select3: String,
             select4: String,
+            num:String
+        },
+        data(){
+            return {
+                checkedAnswer:{}
+            }
         }
     }
 </script>

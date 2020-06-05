@@ -4,21 +4,26 @@
             <li><input autocomplete="off" id="input" type="text"
                    v-model="title"
                    placeholder="Search your book here."
+                       @keydown.up="keyup"
+                       @keydown.down="keydown"
+                       @keydown.enter="enter"
                    v-focus
                    @focus="visibleOptions=true"
                    @focusout="visibleOptions=false"
                    />
-            <a href="#"><img class="glass" src="../assets/magnifying-glass.png" title="this is search bar"></a>
+            <a><img class="glass" src="../assets/magnifying-glass.png" @click="searchBook()" title="this is search bar"></a>
             </li>
-            <li v-if="visibleOptions">
-            <div class="options">
+<!--            <li v-if="visibleOptions">-->
+            <div class="options" ref="optionsList">
                 <ul>
-                    <li :key=match v-for="(match,index) in matches"
+                    <li :key=index v-for="(match,index) in matches"
                         @click="bookSelected(index)"
+                        @mouseover="hover(index)"
+                        :class="{ 'selected': (selected == index)}"
                     v-text=match></li>
                 </ul>
             </div>
-            </li>
+<!--            </li>-->
         </ul>
     </div>
 </template>
@@ -34,7 +39,8 @@
         selectedBook:null,
         title:"",
         books: bookTitle,
-        visibleOptions: true
+        visibleOptions: true,
+          selected:0,
       };
     },
     directives: {
@@ -46,17 +52,14 @@
     },
     methods:{
       bookSelected(index){
-        document.getElementById("input").value=this.matches[index]
+          this.selected = index;
+        this.title=this.matches[index]
         this.selectedBook=this.matches[index]
         this.searchBook();
       },
       searchBook(){
         searchedList.splice(0, searchedList.length);
-        var book = document.getElementById("input").value;
-        if(book=='')
-        {
-          book.focus();
-        }
+        var book = this.title;
         var checkList = JSON.parse(JSON.stringify(bookList));
         var idx=0;
         for(var i=0;i<bookList.length;i++) {
@@ -68,7 +71,7 @@
             idx--;
           }
         }
-        console.log(checkList);
+        // console.log(checkList);
         if(checkList.length!=0) {
           for (var j = 0; j < checkList.length; j++) {
             if (searchedList[0].series == checkList[j].series) {
@@ -78,17 +81,31 @@
         }
         this.$router.push('/book-list');
       },
-      // keyup(){
-      //   if(this.selected==0){
-      //     return;
-      //   }
-      //   this.selected-=1;
-      // },
-      // keydown(){
-      //   if(this.selected<this.matches.length-1){
-      //     this.selected+=1;
-      //   }
-      // }
+        hover(index){
+          this.selected = index;
+        },
+      keyup(){
+
+        if(this.selected==0){
+          return;
+        }
+        this.selected-=1;
+          this.scrollfunc();
+      },
+      keydown(){
+        if(this.selected<this.matches.length-1){
+          this.selected+=1;
+          this.scrollfunc();
+        }
+      },
+        scrollfunc(){
+            this.$refs.optionsList.scrollTop = this.selected*39;
+        },
+        enter(){
+            this.title=this.matches[this.selected]
+            this.selectedBook=this.matches[this.selected]
+            this.searchBook();
+        }
     },
     computed:{
       matches(){
@@ -168,7 +185,6 @@
     .options::-webkit-scrollbar-thumb{
       background-color: #c4c4c4;
     }
-
     .options ul{
         list-style-type:none;
         text-align:left;
@@ -181,6 +197,10 @@
         background-color: white;
     }
     .options ul li:hover {
+        background-color: #dcdcdc;
+    }
+
+    .options ul li.selected{
         background-color: #dcdcdc;
     }
 

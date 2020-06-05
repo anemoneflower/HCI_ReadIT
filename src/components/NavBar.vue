@@ -63,6 +63,7 @@ export default {
         white-space: nowrap;
         margin: 0px 200px 0px 100px;
         color: #3a3a3a;
+        z-index: 1;
     }
 
     #banner {

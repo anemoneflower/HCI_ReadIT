@@ -24,7 +24,8 @@ export default {
 
   .jo {
     position: relative;
-    margin: 120px;
+    margin: auto;
+    margin-top: 120px;
     margin-bottom: 20px;
     width: 575px;
   }

@@ -105,6 +105,15 @@
       </div>
     </div>
     <div>
+        <button id="delete-question-btn" v-on:click="delete_question" style="background: red">
+        Delete This Question
+    </button>
+        <button id="make-new-question-btn" v-on:click="new_question">
+            make new Question
+        </button>
+        <button id="save-question-btn" v-on:click="save_question">
+            save change in this Question
+        </button>
       <button id="prev-question-btn" v-on:click="prev_question">
         Previous Question
       </button>
@@ -156,7 +165,6 @@ export default {
     },
     next_question: function() {
       console.log(this.num);
-
       // check if all components are in
       if (this.question === "") {
         this.error_message("question", 1);
@@ -278,6 +286,9 @@ export default {
       }
       this.answer_description = prev_question.answerDescription;
     },
+      delete_question: function(){
+
+      },
     submit_quiz: function() {
       //console.log(isNaN(this.rangeNum));
       // Check all data is inserted

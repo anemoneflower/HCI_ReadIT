@@ -1,14 +1,14 @@
 <template>
     <div id="searchPage">
-        <Autocomplete/>
+        <search-bar/>
     </div>
 </template>
 
 <script>
-  import Autocomplete from "../components/Autocomplete.vue";
+  import SearchBar from "../components/SearchBar.vue";
   export default {
     name: "SearchPage",
-    components: { Autocomplete}
+    components: { SearchBar}
   };
 
 </script>

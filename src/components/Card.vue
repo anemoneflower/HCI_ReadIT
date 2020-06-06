@@ -1,7 +1,7 @@
 <template>
     <div class="card-post">
         <!-- need to get note-key(id) and route. -->
-        <div class="square"><router-link to="/read-note">
+        <div class="square"><router-link to="/read-note/123kk">
             <div class="board-info">
                 <a class="entry">#1</a>
                 <a class="range">1~72p</a>

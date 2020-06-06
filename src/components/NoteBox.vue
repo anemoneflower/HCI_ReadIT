@@ -3,13 +3,12 @@
     <div>
       <!--style="display: grid; grid-template-columns: 15px auto">-->
       <div>
-
           <div class="title">
             <a class="title-text"> {{ essayTitle }}</a>
           </div>
         <div style="alignment: left; font-size: 15px; margin-top: 5px; margin-bottom: 10px">
           <a style="color: #3a3a3a; "
-            >- page 1~255 -</a
+            >- page 1~255 {{range}}-</a
           >
         </div>
         <div style="font-size: 15px">
@@ -44,7 +43,8 @@ export default {
     author: String,
     view: Number,
     contents: String,
-    like: Number
+    like: Number,
+    range: String
   }
 };
 </script>

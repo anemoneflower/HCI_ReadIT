@@ -62,12 +62,8 @@ export default {
         text-align: center;
         white-space: nowrap;
         margin: 0px 200px 0px 100px;
-<<<<<<< HEAD
         color: #3a3a3a;
         z-index: 1;
-=======
-        color:#3a3a3a;
->>>>>>> SignIn
     }
 
     #banner {

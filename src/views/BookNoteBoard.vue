@@ -1,14 +1,29 @@
 <template>
-  <div class="about">
-    <card></card>
+  <div>
+<!--    <div v-if = "bookNotes.length">-->
+<!--      <card v-for="bookNote in bookNotes"-->
+<!--            :key = "bookNote.id"-->
+<!--            : bookNote = "bookNote"-->
+<!--      ></card>-->
+<!--      </div>-->
   </div>
 </template>
 
 <script>
-import Card from "../components/Card.vue";
+// import Card from "../components/Card.vue";
+import {bookNoteList} from "../main";
+
 export default {
   components: {
-    Card
+    // Card
+  },
+  data(){
+    return{
+      bookNotes : bookNoteList
+    }
   }
 }
 </script>
+<style scoped>
+
+</style>

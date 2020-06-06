@@ -44,20 +44,24 @@ firebase.database().ref('/Book').once('value',function(snapshot){
     myBook.key = myKey;
     bookList.push(myBook);
   }
+  console.log(bookList);
 });
 
 firebase.database().ref('/bookNote').once('value',function(snapshot){
 
   var myValue = snapshot.val();
   var keyList = Object.keys(myValue);
-  for(var i=0;i<keyList.length;i++) {
-    var myKey = keyList[i];
-    var title = myValue[myKey].title;
+  for(var i=keyList.length;i>0;i--) {
+    var myKey = keyList[i-1];
+    var book = myValue[myKey].book;
     //if(myValue[myKey].title = "booktitle") 로 바꿔줘야함.
-    if (title == "123abd") {
-      bookNoteList.push(myValue[myKey]);
+    if (book == "123abd") {
+      var myBookNote = myValue[myKey];
+      myBookNote.index = keyList.length-i+1;
+      bookNoteList.push(myBookNote);
     }
   }
+  console.log(bookNoteList);
 });
 
 

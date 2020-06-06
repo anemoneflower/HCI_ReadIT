@@ -1,6 +1,6 @@
 <template>
     <div class="autocomplete">
-        <ul class="popover">            
+        <ul class="popover">
             <li><input autocomplete="off" id="input" type="text"
                    v-model="title"
                    placeholder="Search your book here."
@@ -13,17 +13,17 @@
                    />
             <a><img class="glass" src="../assets/magnifying-glass.png" @click="searchBook()" title="this is search bar"></a>
             </li>
-<!--            <li v-if="visibleOptions">-->
+            <li v-if="visibleOptions">
             <div class="options" ref="optionsList">
                 <ul>
                     <li :key=index v-for="(match,index) in matches"
                         @click="bookSelected(index)"
-                        @mouseover="hover(index)"
+                        @mouseenter="hover(index)"
                         :class="{ 'selected': (selected == index)}"
                     v-text=match></li>
                 </ul>
             </div>
-<!--            </li>-->
+            </li>
         </ul>
     </div>
 </template>
@@ -40,7 +40,7 @@
         title:"",
         books: bookTitle,
         visibleOptions: true,
-          selected:0,
+          selected:0
       };
     },
     directives: {
@@ -85,20 +85,21 @@
           this.selected = index;
         },
       keyup(){
-
         if(this.selected==0){
           return;
         }
         this.selected-=1;
-          this.scrollfunc();
+        // this.title = this.matches[this.selected];
+          this.scroll();
       },
       keydown(){
         if(this.selected<this.matches.length-1){
           this.selected+=1;
-          this.scrollfunc();
+            // this.title = this.matches[this.selected];
+          this.scroll();
         }
       },
-        scrollfunc(){
+        scroll(){
             this.$refs.optionsList.scrollTop = this.selected*39;
         },
         enter(){

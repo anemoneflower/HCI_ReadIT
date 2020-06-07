@@ -81,6 +81,7 @@ export default {
   data() {
     return {
       userKey: userKey[0].key,
+      userID: userKey[0].userId,
       bookKey: selectedBook[0].key,
       bookTitle: selectedBook[0].title,
       title: "",
@@ -113,8 +114,10 @@ export default {
         content: this.content,
         share: this.isShare,
 
-        book: this.bookKey,
-        author: this.userKey,
+        bookKey: this.bookKey,
+        bookTitle: this.bookTitle,
+        userKey: this.userKey,
+        userId: this.userId,
 
         view: 0,
         up: 0

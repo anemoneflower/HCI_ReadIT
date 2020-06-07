@@ -1,61 +1,71 @@
 <template>
-  <div class="WriteNote">
-    <h3
+  <div class="WriteNote" style="margin-top: 200px">
+    <a
       :book="defaultBook"
       class="bookTitle"
-      style="margin: auto; text-align: center"
+      style="margin: auto; text-align: center;"
     >
       {{ book }}
-    </h3>
+    </a>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
     <div class="inputLayout">
       <div class="inputRows">
-        <p>Title</p>
-        <input id="titleInput" style="padding: auto" v-model="title" />
+        <p class="tags">Title</p>
+        <input
+          class="title inputBorder"
+          style="padding: auto"
+          v-model="title"
+        />
       </div>
       <div class="inputRows">
-        <p>Range</p>
+        <p class="tags">Range</p>
         <div id="rangeGroup">
           <input
-            class="rangeInput"
+            class="rangeInput inputBorder"
             v-model="range1"
             type="number"
             :disabled="isWholeBook"
           />
           ~
           <input
-            class="rangeInput"
+            class="rangeInput inputBorder"
             v-model="range2"
             type="number"
             :disabled="isWholeBook"
             style="margin-right: 10px"
           />
           <label for="wholeRange">Whole Book</label>
-          <input type="checkbox" id="wholeRange" v-model="isWholeBook" />
+          <input
+            type="checkbox"
+            id="wholeRange"
+            class="checkBox"
+            style="border: #f37022 solid 2px"
+            v-model="isWholeBook"
+          />
           <!--          @change="check($event)"/>-->
           <!--          <p style="white-space: pre-line">{{ message }}</p>-->
         </div>
       </div>
       <div class="inputRows">
-        <p style="vertical-align: top; margin-top: 0">Note</p>
+        <p class="tags" style="vertical-align: top; margin-top: 0">Note</p>
         <div>
           <textarea
-            class="content"
+            class="content inputBorder"
             v-model="content"
-            style="height: 300px; width: 350px"
+            style="height: 300px; width: 800px; margin: 0; padding: 0"
           ></textarea>
           <div
-            style="margin: 10px auto; display: grid; grid-template-columns: auto 50px"
+            style="margin: 10px auto; display: grid; grid-template-columns: auto 80px"
           >
             <div>
               <label for="share">Do you want to share with others?</label>
               <input type="checkbox" id="share" v-model="isShare" />
             </div>
             <div style="text-align: right; ">
-              <button
-                v-on:click="submit_note"
-                style="border-radius: 20px; outline: none"
-              >
-                CLICK
+              <button v-on:click="submit_note" class="submitBtn">
+                SUBMIT
               </button>
             </div>
           </div>
@@ -138,22 +148,81 @@ export default {
 p {
   margin: auto;
 }
+
+input[type="text"],
+textarea {
+  border-style: inset;
+  border-width: 2px;
+}
+
 .bookTitle {
-  width: 500px;
+  width: 800px;
+  height: 30px;
   margin: auto;
-  text-align: left;
+  //text-align: left;
+  //margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #3a3a3a;
+}
+.title {
+  height: 20px;
 }
 
 .rangeInput {
   width: 30px;
+  height: 20px;
+  outline: none;
+}
+
+.tags {
+  font-size: 15px;
+  text-align: right;
+  font-weight: bold;
 }
 
 .inputRows {
-  width: 500px;
-  margin: 10px auto;
+  width: 1000px;
+  height: 20px;
+  margin: 30px auto;
   display: grid;
   text-align: left;
-  grid-template-columns: 150px auto;
+  grid-template-columns: 100px 800px auto;
   /*grid-template-rows: repeat(4, 1fr);*/
+}
+.inner {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  left: 30%;
+  background: #f37022;
+  box-shadow: 0px 0px 10px 20px #f37022;
+}
+.outer {
+  width: 800px;
+  height: 3px;
+  margin: 5px auto 60px;
+  //alignment: left;
+  overflow: hidden;
+  position: relative;
+  //background-color: #f37022;
+  outline: none;
+}
+.inputBorder {
+  border-radius: 3px;
+  border-color: #cbcbcb;
+  border-style: solid;
+}
+.submitBtn {
+  outline: none;
+  background-color: #f37022;
+  color: #fff;
+  border-radius: 10px;
+  border-width: 0px;
+  font-size: 15px;
+  padding: 3px;
+}
+.submitBtn:hover {
+  background-color: rgb(223, 100, 29);
 }
 </style>

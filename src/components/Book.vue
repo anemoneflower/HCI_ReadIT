@@ -23,8 +23,10 @@
         methods:{
             goBoard(){
                 bookNoteList.splice(0, bookNoteList.length);
+                selectedBook.splice(0, selectedBook.length);
                 var selected = this.book;
                 selectedBook.push(selected);
+                console.log(selectedBook.length);
                 console.log(selected);
                 firebase.database().ref('/bookNote').once('value',function(snapshot){
 

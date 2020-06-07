@@ -1,13 +1,13 @@
 <template>
     <div>
         <div class="booklist" v-if="books.length">
-            <router-link to="/book-note-board">
-                <Book
-                    v-for="book in books"
-                    :key = "book.key"
-                    :book="book"
-                />
-            </router-link>
+            <div  :key = "book.key" v-for="book in books">
+                <router-link to="/book-note-board">
+                    <Book
+                        :book="book"
+                    />
+                </router-link>
+            </div>
         </div>
         <p v-else>
             Nothing left in the list.

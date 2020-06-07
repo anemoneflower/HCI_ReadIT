@@ -19,33 +19,74 @@
 
 <script>
     import firebase from "firebase";
+    import {isSignIn} from "../main";
+    // import {userKey} from "../main";
+    // import {isSignIn,userList} from "../main";
+    // import { userList} from "../main";
 
 
     export default {
         name: "SignIn",
         data(){
             return{
+                users: [],
                 userId:"",
-                userPw:""
+                userPw:"",
+                // checkSignIn:isSignIn
             };
+        },
+        created() {
+            console.log("A");
+            console.log(this.users);
+            var users = new Array();
+            firebase.database().ref('/user/').once('value',function(snapshot){
+                var myValue = snapshot.val();
+                var keyList = Object.keys(myValue);
+                console.log(users);
+                for(var i=0;i<keyList.length;i++) {
+                    var myKey = keyList[i];
+                    var userObj = myValue[myKey];
+                    userObj.key = myKey;
+                    console.log(myKey);
+                    users.push(userObj);
+                    console.log(users);
+                }
+            });
+            this.users = users;
+            console.log(this.users);
         },
         methods: {
             signIn(){
+                var uid = this.userId;
+                var upw = this.userPw;
 
-                var id = this.userId;
-                var pw = this.userPw;
-                firebase.database().ref('/user').once('value',function(snapshot){
-                    var myValue = snapshot.val();
-                    var keyList = Object.keys(myValue);
-                    // console.log(id);
-                    for(var i=0;i<keyList.length;i++) {
-                        var myKey = keyList[i];
-                        if(myValue[myKey].id==id
-                            && myValue[myKey].pw==pw){
-                                console.log("success");
-                        }
+                // console.log(pw);
+                // console.log(isSignIn);
+                // console.log(userList);
+                for(var i=0;(this.users).length;i++){
+                    var userObj = this.users[i];
+                    if(userObj.idUser==uid&&userObj.pwUser==upw){
+                        isSignIn.pop();
+                        isSignIn.push(true);
+                        console.log(isSignIn);
                     }
-                });
+                }
+                console.log(isSignIn);
+                // firebase.database().ref('/user').once('value',function(snapshot){
+                //     var myValue = snapshot.val();
+                //     var keyList = Object.keys(myValue);
+                //     // console.log(id);
+                //     for(var i=0;i<keyList.length;i++) {
+                //         var myKey = keyList[i];
+                //         if(myValue[myKey].id==id
+                //             && myValue[myKey].pw==pw){
+                //             isSignIn.pop();
+                //             isSignIn.push(true);
+                //             console.log(isSignIn);
+                //         }
+                //     }
+                // });
+
             }
         }
     }

@@ -30,20 +30,40 @@
                     </ul>
                 </li>
             </ul>
-            <router-link to="/sign-in"><button id="sign-in-button" v-if="isSignIn==false">Sign In</button></router-link>
+            <router-link to="/sign-in"><button id="sign-in-button" @click="goSignIn" v-if="isSignIn==false">Sign In</button></router-link>
         </div>
     </div>
 </template>
 
 <script>
+// import firebase from "firebase";
+// import {userList} from "../main";
+
+import {isSignIn} from "../main";
+
 export default {
     data: function() {
         return {
             isSelected: true,
-            isSignIn:true,
+            isSignIn:isSignIn[0],
             bookNoteIsOpen:false,
             quizIsOpen:false,
             myPageIsOpen:false
+        }
+    },
+    methods: {
+        goSignIn() {
+            //     firebase.database().ref('/user/').once('value',function(snapshot){
+            //         var myValue = snapshot.val();
+            //         var keyList = Object.keys(myValue);
+            //
+            //         for(var i=0;i<keyList.length;i++) {
+            //             var myKey = keyList[i];
+            //             userList.push(myValue[myKey]);
+            //         }
+            //     });
+            //     console.log(userList);
+            // }
         }
     }
 }

@@ -67,7 +67,7 @@ const routes = [
     }
   },
   {
-    path: "/signin",
+    path: "/sign-in",
     name: "SignIn",
     component: function() {
       return import("../views/SignIn.vue");

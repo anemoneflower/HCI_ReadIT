@@ -5,7 +5,7 @@ import store from "./store";
 import firebase from "firebase";
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$isSignin = false;
 // Vue.use(VueFire)
 
 var config = {
@@ -21,14 +21,18 @@ var config = {
 // Initialize Firebase
 
 let app = firebase.initializeApp(config);
+export const isSignIn = new Array();
 
 export const db = app.database();
-
+// export let isSignIn = new Array();
+isSignIn.push(false);
 export const bookList = new Array();
 export const bookTitle = new Array();
 export let searchedList = new Array();
 export const bookNoteList = new Array();
-export let isSignin = false;
+export var userKey;
+
+
 
 firebase.database().ref('/Book').once('value',function(snapshot){
 

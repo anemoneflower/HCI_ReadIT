@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import Book from './Book.vue'
+  import Book from './../components/Book.vue'
   import {searchedList} from "../main";
 
   export default {

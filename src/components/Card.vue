@@ -39,9 +39,10 @@ export default {
 
 <style scoped>
     .card-post {
-        display: flex;
+        display: box;
         justify-content: center;
-        padding: 80px;
+        padding: 10px;
+        padding-left: 30%;
     }
     .square {
         width: 800px;

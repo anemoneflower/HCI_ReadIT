@@ -10,26 +10,16 @@
                 </ul>
             </li>
         </ul>
-        <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn && isSelected">
+        <!-- <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn && isSelected">
             <li><a @mouseover="quizIsOpen = true">Quiz</a>
                 <ul id="quiz-submenu" v-if="quizIsOpen">
                     <li><router-link to="/solve-quiz"><a @click="quizIsOpen = false">Solve Quiz</a></router-link></li>
                     <li><router-link to="/make-quiz"><a @click="quizIsOpen = false">Make Quiz</a></router-link></li>
                 </ul>
             </li>
-        </ul>
-        <!-- <ul v-if="isSignIn" class="my-page"> -->
+        </ul> -->
         <div class = "certification">
-            <ul class="my-page" @mouseleave="myPageIsOpen = false" v-if="isSignIn">
-                <!-- <li><a>{{user.name}}</a> -->
-                <li><a @click="myPageIsOpen = !myPageIsOpen">coolofficials</a>
-                    <ul class="my-page-contents" id="mypage-submenu" v-if="myPageIsOpen">
-                        <li><router-link to="/my-page"><a @click="myPageIsOpen = false">My Page</a></router-link></li>
-                        <li><router-link to="/my-book-note"><a @click="myPageIsOpen = false">My Notes</a></router-link></li>
-                        <li><router-link to="/my-quiz"><a @click="myPageIsOpen = false">My Quiz</a></router-link></li>
-                    </ul>
-                </li>
-            </ul>
+            <router-link to="/my-page"><button id="my-page-button" v-if="isSignIn" title="go to mypage">coolofficials</button></router-link>
             <router-link to="/sign-in"><button id="sign-in-button" @click="goSignIn" v-if="isSignIn==false">Sign In</button></router-link>
         </div>
     </div>
@@ -47,8 +37,7 @@ export default {
             isSelected: true,
             isSignIn:isSignIn[0],
             bookNoteIsOpen:false,
-            quizIsOpen:false,
-            myPageIsOpen:false
+            quizIsOpen:false
         }
     },
     methods: {
@@ -105,7 +94,7 @@ export default {
         color: #3a3a3a;
     }
 
-    .main-menu, #booknote-submenu, #quiz-submenu, .my-page, .my-page-contents {
+    .main-menu, #booknote-submenu, #quiz-submenu {
         margin: 0;
         padding: 0;
         list-style-type: none;
@@ -116,15 +105,7 @@ export default {
         position: absolute;
         display: inline-block;
         top: 27px;
-        right: 230px;
-        width: 160px;
-    }
-
-    #quiz {
-        position: absolute;
-        display: inline-block;
-        top: 27px;
-        right: 70px;
+        right: 130px;
         width: 160px;
     }
 
@@ -138,12 +119,12 @@ export default {
         font-size: 25px;
     }
 
-    #booknote-submenu, #quiz-submenu {
+    #booknote-submenu{
         position: absolute;
         display: block;
     }
 
-    #booknote-submenu > li, #quiz-submenu > li, #mypage-submenu > li {
+    #booknote-submenu > li {
         padding: 15px 0px 5px 0px;
         font-size: 20px;
         text-align: left;
@@ -153,7 +134,7 @@ export default {
         position: relative;
     }
 
-    .my-page > li {
+    #my-page-button {
         background-color: #F37022;
         letter-spacing: 1px;
         color: #fff;
@@ -163,15 +144,10 @@ export default {
         top: 27px;
         left: 95%;
         border-radius: 20px;
-        width: 160px;
-    }
-
-    #mypage-submenu > li > a {
-        color: #fff;
-    }
-
-    #mypage-submenu {
-        position: absolute;
+        border-width: 0px;
+        width: 180px;
+        outline: none;
+        cursor: pointer;
     }
 
     #sign-in-button {
@@ -180,7 +156,7 @@ export default {
         border-radius: 10px;
         border-width: 0px;
         padding: 8px 15px 10px 15px;
-        font-size: 24px;
+        font-size: 25px;
         position: absolute;
         left: 100%;
         top: 27px;

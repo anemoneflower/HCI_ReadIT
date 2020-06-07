@@ -104,10 +104,20 @@ export default {
       console.log(this.bookTitle);
       console.log(this.bookKey);
       console.log(this.userKey);
-      console.log(this.isShare);
+      console.log(Date().toString());
+      this.content = this.content.replace(/(\r\n|\n|\r)/gm, "<br>");
+
+      var date = Date().toString().split(" ");
+      date.splice(0, 1);
+      date.splice(0, 0, date[1]);
+      date.splice(2, 1);
+      date.splice(4);
+
+      console.log(date);
+
       var noteKey = db.ref("bookNote").push({
         title: this.title,
-        date: Date.now(),
+        date: date.join(' '),
         isWholeBook: this.isWholeBook,
         range1: this.range1,
         range2: this.range2,
@@ -160,7 +170,7 @@ textarea {
 }
 
 .rangeInput {
-  width: 30px;
+  width: 50px;
   height: 20px;
   outline: none;
 }

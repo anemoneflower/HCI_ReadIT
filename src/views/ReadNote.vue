@@ -1,7 +1,6 @@
 <template>
   <div class="read-my-note">
     <!--    <NoteBox-->
-
     <!--      v-bind:range="noteKey"-->
     <!--      v-bind:essayTitle = bookNote.title-->
     <!--      author="Juho Kim"-->

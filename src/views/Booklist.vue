@@ -38,10 +38,10 @@
   .result {
     font-size: 25px;
     padding-top: 50px;
-    margin-left: 120px;
+    padding-left: 120px;
     text-align: left;
     position: relative;
-    width: 100%;
+    width: 80%;
   }
 
   .booklist {

@@ -2,7 +2,7 @@
     <div class = "wrap" :style="[(quizIsOpen || bookNoteIsOpen) ? {'height': '180px', 'transition': 'all 0.1s ease'} : {'height': '100px', 'transition': 'all 0.3s ease'}]">
         <router-link to="/"><img id="banner" src="../assets/logo.png"/></router-link>
         <!-- <ul v-if="isSignIn" class="main-menu"> -->
-        <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn && isSelected">
+        <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn && selected">
             <li><a @mouseover="bookNoteIsOpen = true">BookNotes</a>
                 <ul id="booknote-submenu" v-if="bookNoteIsOpen">
                     <li><router-link to="/book-note-board"><a @click="bookNoteIsOpen = false">Read Notes</a></router-link></li>
@@ -29,12 +29,12 @@
 // import firebase from "firebase";
 // import {userList} from "../main";
 
-import {isSignIn, selectedBook} from "../main";
+import {current, isSignIn, selectedBook} from "../main";
 
 export default {
     data: function() {
         return {
-            isSelected: selectedBook[0],
+            isSelected: true,
             isSignIn:isSignIn[0],
             bookNoteIsOpen:false,
             quizIsOpen:false
@@ -42,6 +42,9 @@ export default {
     },
     methods: {
         goSignIn() {
+            var currentUrl = this.$router.history.current["path"];
+            current.push(currentUrl);
+            // console.log(currentUrl);
             //     firebase.database().ref('/user/').once('value',function(snapshot){
             //         var myValue = snapshot.val();
             //         var keyList = Object.keys(myValue);
@@ -53,6 +56,16 @@ export default {
             //     });
             //     console.log(userList);
             // }
+        }
+    },
+    computed:{
+        selected(){
+            if(selectedBook.length!=0){
+                return true
+            }
+            else{
+                return false
+            }
         }
     }
 }

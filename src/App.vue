@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <div class="nav" v-if="isNotSignInPage()">
+    <div class="nav" v-if="isNotSignInPage()&&isNotBoardPage()">
+      <nav-bar></nav-bar>
+    </div>
+    <div class="nav2" v-else-if="isNotSignInPage()&&isBoardPage()">
       <nav-bar></nav-bar>
     </div>
     <div class="bar" v-if="isNotHome() && isNotSignInPage()">
@@ -14,6 +17,7 @@
 <script>
 import NavBar from "@/components/NavBar.vue";
 import SearchBar from "@/components/SearchBar.vue"
+// import {selectedBook} from "./main";
 
 export default {
   components: {
@@ -26,6 +30,24 @@ export default {
     },
     isNotSignInPage() {
       return this.$router.history.current["path"] != "/sign-in"
+    },
+    isNotBoardPage(){
+      return this.$router.history.current["path"] != "/book-note-board";
+      // if(selectedBook.length!=0){
+      //   return true
+      // }
+      // else{
+      //   return false
+      // }
+    },
+    isBoardPage(){
+      return this.$router.history.current["path"] == "/book-note-board";
+      // if(selectedBook.length!=0){
+      //   return true
+      // }
+      // else{
+      //   return false
+      // }
     }
   }
 }
@@ -42,6 +64,15 @@ export default {
 }
 
 .nav {
+  position: fixed;
+  background: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.nav2 {
   position: fixed;
   background: white;
   top: 0;

@@ -72,6 +72,13 @@ const routes = [
     component: function() {
       return import("../views/SignIn.vue");
     }
+  },
+  {
+    path: "/my-page",
+    name: "MyBooklist",
+    component: function() {
+      return import("../views/MyBooklist.vue");
+    }
   }
 ];
 

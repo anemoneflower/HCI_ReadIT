@@ -5,7 +5,7 @@
         </div>
         <div class="id">
             <p class="textId">ID</p>
-            <input id="inputId" v-model="userId" type="text" placeholder="ID">
+            <input id="inputId" v-model="userId" type="text" placeholder="ID" autocomplete="off">
         </div>
         <div class="password">
             <p class="textPw">Password</p>
@@ -63,7 +63,7 @@
 
                 for(var i=0;i<(this.users).length;i++){
                     var userObj = this.users[i];
-                    if(userObj.idUser==uid&&userObj.pwUser==upw){
+                    if(userObj.userId==uid&&userObj.userPw==upw){
                         isSignIn.pop();
                         isSignIn.push(true);
                         userKey.push(userObj);

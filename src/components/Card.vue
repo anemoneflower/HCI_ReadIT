@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/read-note/123kk">
+    <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key }}"><!--    <router-link :to="/read-note/${bookNote.key}">:to="{ name: 'user', params: { userId: 123 }}"-->
     <div class="card-post" @click="goBookNote">
         <!-- need to get note-key(id) and route. -->
         <div class="square">

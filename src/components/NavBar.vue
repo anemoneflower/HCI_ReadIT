@@ -19,7 +19,7 @@
             </li>
         </ul> -->
         <div class = "certification">
-            <router-link to="/my-page"><button id="my-page-button" v-if="isSignIn" title="go to mypage">coolofficials</button></router-link>
+            <router-link to="/my-page"><button id="my-page-button" v-if="isSignIn" title="go to mypage">{{userSignIn}}</button></router-link>
             <router-link to="/sign-in"><button id="sign-in-button" @click="goSignIn" v-if="isSignIn==false">Sign In</button></router-link>
         </div>
     </div>
@@ -29,7 +29,7 @@
 // import firebase from "firebase";
 // import {userList} from "../main";
 
-import {current, isSignIn, selectedBook} from "../main";
+import {current, isSignIn, selectedBook, userKey} from "../main";
 
 export default {
     data: function() {
@@ -65,6 +65,14 @@ export default {
             }
             else{
                 return false
+            }
+        },
+        userSignIn(){
+            if(userKey.length==0){
+                return;
+            }
+            else{
+                return userKey[0].userId;
             }
         }
     }

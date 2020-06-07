@@ -3,26 +3,27 @@
         <!-- need to get note-key(id) and route. -->
         <div class="square"><router-link to="/read-note">
             <div class="board-info">
-                <a class="entry">#1</a>
-                <a class="range">1~72p</a>
+                <a class="entry">#{{bookNote.index}}</a>
+                <a class="range">{{bookNote.range1}}~{{bookNote.range2}}p</a>
             </div>
             <div class="representative">
-                <div class="title">Avada Kedavra</div>
+                <div class="title">{{bookNote.title}}</div>
                 <div class="post-info">
                     <!-- local date format -->
-                    <a class="date">4 JUN 2020</a><br>
+<!--                    <a class="date">4 JUN 2020</a><br>-->
+                    <a class="date">{{bookNote.date}}</a><br>
                     <!-- view icon -->
                     <img class="icon" id="eye" src="../assets/view.png"/>
-                    <a class="view">1312</a>
+                    <a class="view">{{bookNote.view}}</a>
                     <!-- up icon -->
                     <img class="icon" id="thumbs" src="../assets/thumbs.png"/>
-                    <a class="up">87</a>
+                    <a class="up">{{bookNote.up}}</a>
                 </div>
             </div>
             <div class="content-box">
-                <p class="content">Harry Potter's parents were killed by "You Know Who", but Harry survived. Sonyun Punch was so strong. Dododongha fainted away by Sonyun Punch. Hwang Chairin's Jungchiryuk is global No.1. Black Seo Sonyun sent E-mail to blaim Dododongha</p>
+                <p class="content">{{bookNote.content}}</p>
                 <!-- change author name -->
-                <a class="author">by Juho Kim</a>
+                <a class="author">{{bookNote.author}}</a>
             </div>
             </router-link>
         </div>
@@ -32,7 +33,11 @@
 
 <script>
 export default {
-    
+    props:{
+        bookNote : {
+            type:Object
+        }
+    }
 }
 </script>
 

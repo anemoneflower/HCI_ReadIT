@@ -5,7 +5,7 @@ import store from "./store";
 import firebase from "firebase";
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$isSignin = false;
 // Vue.use(VueFire)
 
 var config = {
@@ -21,12 +21,18 @@ var config = {
 // Initialize Firebase
 
 let app = firebase.initializeApp(config);
+export const isSignIn = new Array();
 
 export const db = app.database();
-
+// export let isSignIn = new Array();
+isSignIn.push(false);
 export const bookList = new Array();
 export const bookTitle = new Array();
 export let searchedList = new Array();
+export const bookNoteList = new Array();
+export var userKey;
+
+
 
 firebase.database().ref('/Book').once('value',function(snapshot){
 
@@ -42,7 +48,26 @@ firebase.database().ref('/Book').once('value',function(snapshot){
     myBook.key = myKey;
     bookList.push(myBook);
   }
+  console.log(bookList);
 });
+
+firebase.database().ref('/bookNote').once('value',function(snapshot){
+
+  var myValue = snapshot.val();
+  var keyList = Object.keys(myValue);
+  for(var i=keyList.length;i>0;i--) {
+    var myKey = keyList[i-1];
+    var book = myValue[myKey].book;
+    //if(myValue[myKey].title = "booktitle") 로 바꿔줘야함.
+    if (book == "123abd") {
+      var myBookNote = myValue[myKey];
+      myBookNote.index = keyList.length-i+1;
+      bookNoteList.push(myBookNote);
+    }
+  }
+  console.log(bookNoteList);
+});
+
 
 new Vue({
   router,

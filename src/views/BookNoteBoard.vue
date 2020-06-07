@@ -1,5 +1,13 @@
 <template>
-  <div class="about">
+  <div class="board">
+    <h1>Booknotes</h1>
+    <card></card>
+    <card></card>
+    <card></card>
+    <card></card>
+    <card></card>
+    <card></card>
+    <card></card>
     <card></card>
   </div>
 </template>
@@ -12,3 +20,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+  .board {
+    position: relative;
+  }
+
+  h1 {
+    position: absolute;
+    left: 200px;
+    width: auto;
+  }
+</style>

@@ -25,9 +25,9 @@ const routes = [
     }
   },
   {
-    path: "/read-note",
+    path: "/read-note/:noteKey",
     name: "ReadNote",
-
+    props: true,
     component: function() {
       return import("../views/ReadNote.vue");
     }

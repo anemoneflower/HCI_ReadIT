@@ -1,7 +1,8 @@
 <template>
+    <router-link to="/read-note/123kk">
     <div class="card-post" @click="goBookNote">
         <!-- need to get note-key(id) and route. -->
-        <div class="square"><router-link to="/read-note/123kk">
+        <div class="square">
             <div class="board-info">
                 <a class="entry">#{{bookNote.index}}</a>
                 <a class="range">{{bookNote.range1}}~{{bookNote.range2}}p</a>
@@ -25,9 +26,9 @@
                 <!-- change author name -->
                 <a class="author">{{bookNote.author}}</a>
             </div>
-            </router-link>
         </div>
     </div>
+    </router-link>
 </template>
 
 
@@ -43,6 +44,7 @@ export default {
     methods:{
         goBookNote(){
             selectedBookNote.splice(0, selectedBookNote.length);
+            console.log(selectedBookNote);
             selectedBookNote.push(this.bookNote);
             console.log(selectedBookNote);
         }

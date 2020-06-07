@@ -1,5 +1,5 @@
 <template>
-    <div class="card-post">
+    <div class="card-post" @click="goBookNote">
         <!-- need to get note-key(id) and route. -->
         <div class="square"><router-link to="/read-note/123kk">
             <div class="board-info">
@@ -32,10 +32,19 @@
 
 
 <script>
+    import {selectedBookNote} from "../main";
+
 export default {
     props:{
         bookNote : {
             type:Object
+        }
+    },
+    methods:{
+        goBookNote(){
+            selectedBookNote.splice(0, selectedBookNote.length);
+            selectedBookNote.push(this.bookNote);
+            console.log(selectedBookNote);
         }
     }
 }

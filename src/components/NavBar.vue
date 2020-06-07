@@ -29,12 +29,12 @@
 // import firebase from "firebase";
 // import {userList} from "../main";
 
-import {isSignIn} from "../main";
+import {isSignIn, selectedBook} from "../main";
 
 export default {
     data: function() {
         return {
-            isSelected: true,
+            isSelected: selectedBook[0],
             isSignIn:isSignIn[0],
             bookNoteIsOpen:false,
             quizIsOpen:false

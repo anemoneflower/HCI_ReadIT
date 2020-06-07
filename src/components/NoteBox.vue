@@ -5,6 +5,7 @@
       <div>
         <div class="title">
           <a class="title-text"> {{ bookNote.title }}</a>
+          <a class="author"> by. {{ bookNote.userId }}</a>
         </div>
         <div
           style="alignment: left; font-size: 15px; margin-top: 5px; margin-bottom: 10px"
@@ -14,8 +15,7 @@
           >
         </div>
         <div style="font-size: 15px">
-          <a class="date">{{ bookNote.date }}</a> |
-          <a class="author">{{ bookNote.userId }}</a>
+          <a class="date">{{ bookNote.date }}</a>
         </div>
       </div>
       <div class="outer">
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="contents">
-      <p class="content">{{ bookNote.content }}</p>
+      <p class="content" v-html="bookNote.content"></p>
     </div>
     <div style="margin-bottom: 50px; margin-top: 30px">
       <img class="icon" id="eye" src="../assets/view.png" />

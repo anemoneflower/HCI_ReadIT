@@ -23,7 +23,7 @@
             title="this is search bar"
         /></a>
       </li>
-      <!--            <li v-if="visibleOptions">-->
+<!--      <li v-if="visibleOptions">-->
       <div class="options" ref="optionsList">
         <ul>
           <li
@@ -36,7 +36,7 @@
           ></li>
         </ul>
       </div>
-      <!--            </li>-->
+<!--      </li>-->
     </ul>
   </div>
 </template>
@@ -130,9 +130,9 @@ export default {
         return [];
       }
      
-      if (this.keyDown == true) {
-        return;
-      }
+      // if (this.keyDown == true) {
+      //   return;
+      // }
       console.log(bookTitle);
 
 

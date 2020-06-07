@@ -1,11 +1,13 @@
 <template>
     <div>
         <ul v-if="books.length">
-            <Book
+            <router-link to="/book-note-board">
+                <Book
                 v-for="book in books"
-                :key = "book.id"
+                :key = "book.key"
                 :book="book"
             />
+            </router-link>
         </ul>
         <p v-else>
             Nothing left in the list.
@@ -15,7 +17,8 @@
 
 <script>
   import Book from './../components/Book.vue'
-  import {searchedList} from "../main";
+  import { searchedList} from "../main";
+  // import firebase from "firebase";
 
   export default {
     components:{

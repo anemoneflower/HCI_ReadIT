@@ -110,6 +110,7 @@
         margin-right: auto;
     }
     .popover{
+        z-index: 2;
         margin: 0 auto;
         padding: 0;
         width: 575px;

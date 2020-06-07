@@ -1,5 +1,5 @@
 <template>
-    <div class = "wrap">
+    <div class = "wrap" :style="[(quizIsOpen || bookNoteIsOpen) ? {'height': '180px', 'transition': 'all 0.1s ease'} : {'height': '100px', 'transition': 'all 0.3s ease'}]">
         <router-link to="/"><img id="banner" src="../assets/logo.png"/></router-link>
         <!-- <ul v-if="isSignIn" class="main-menu"> -->
         <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn && isSelected">
@@ -63,7 +63,6 @@ export default {
         white-space: nowrap;
         margin: 0px 200px 0px 100px;
         color: #3a3a3a;
-        z-index: 1;
     }
 
     #banner {

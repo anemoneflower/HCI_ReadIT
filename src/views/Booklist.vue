@@ -1,14 +1,15 @@
 <template>
     <div>
-        <ul v-if="books.length">
-            <router-link to="/book-note-board">
-                <Book
-                v-for="book in books"
-                :key = "book.key"
-                :book="book"
-            />
-            </router-link>
-        </ul>
+        <div class="result">Search result</div>
+        <div class="booklist" v-if="books.length">
+            <div  :key = "book.key" v-for="book in books">
+                <router-link to="/book-note-board">
+                    <Book
+                        :book="book"
+                    />
+                </router-link>
+            </div>
+        </div>
         <p v-else>
             Nothing left in the list.
         </p>
@@ -34,5 +35,23 @@
 </script>
 
 <style scoped>
+  .result {
+    font-size: 25px;
+    padding-top: 50px;
+    margin-left: 120px;
+    text-align: left;
+    position: relative;
+    width: 100%;
+  }
 
+  .booklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+    grid-auto-rows:minmax(300px, auto);
+    column-gap: 40px;
+    row-gap: 20px;
+    padding-top: 20px;
+    margin-left: 90px;
+    margin-right: 90px;
+  }
 </style>

@@ -61,7 +61,7 @@
             </div>
             <div style="text-align: right; ">
               <button v-on:click="submit_note" class="submitBtn">
-                SUBMIT
+                Submit
               </button>
             </div>
           </div>
@@ -159,8 +159,8 @@ textarea {
   width: 800px;
   height: 30px;
   margin: auto;
-  //text-align: left;
-  //margin-bottom: 30px;
+  /* text-align: left;
+  margin-bottom: 30px; */
   font-size: 25px;
   font-weight: bold;
   color: #3a3a3a;
@@ -202,10 +202,10 @@ textarea {
   width: 800px;
   height: 3px;
   margin: 5px auto 60px;
-  //alignment: left;
+  /* alignment: left; */
   overflow: hidden;
   position: relative;
-  //background-color: #f37022;
+  /* background-color: #f37022; */
   outline: none;
 }
 .inputBorder {
@@ -220,9 +220,16 @@ textarea {
   border-radius: 10px;
   border-width: 0px;
   font-size: 15px;
-  padding: 3px;
+  padding: 5px 10px 7px 10px;
+  cursor: pointer;
 }
 .submitBtn:hover {
   background-color: rgb(223, 100, 29);
+}
+#wholeRange {
+  cursor: pointer;
+}
+#share {
+  cursor: pointer;
 }
 </style>

@@ -81,7 +81,7 @@ export default {
   data() {
     return {
       userKey: userKey[0].key,
-      userID: userKey[0].userId,
+      userId: userKey[0].userId,
       bookKey: selectedBook[0].key,
       bookTitle: selectedBook[0].title,
       title: "",
@@ -128,7 +128,7 @@ export default {
           _key: noteKey
         });
       // TODO: set routing
-      this.$router.push({ path: `/read-note/${noteKey}` });
+      this.$router.push({ path: `/book-note-board` });
     }
   }
 };

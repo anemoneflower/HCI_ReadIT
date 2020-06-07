@@ -34,7 +34,7 @@
                     var keyList = Object.keys(myValue);
                     for(var i=keyList.length;i>0;i--) {
                         var myKey = keyList[i-1];
-                        var book = myValue[myKey].book;
+                        var book = myValue[myKey].bookKey;
                         //if(myValue[myKey].title = "booktitle") 로 바꿔줘야함.
                         if (book == selected.key) {
                             var myBookNote = myValue[myKey];

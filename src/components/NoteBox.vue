@@ -9,11 +9,13 @@
         <div
           style="alignment: left; font-size: 15px; margin-top: 5px; margin-bottom: 10px"
         >
-          <a style="color: #3a3a3a; ">- page {{bookNote.range1}}~{{ bookNote.range2 }}-</a>
+          <a style="color: #3a3a3a; " :range_text="rangeText"
+            >- {{ range_text }} -</a
+          >
         </div>
         <div style="font-size: 15px">
           <a class="date">{{ bookNote.date }}</a> |
-          <a class="author">{{ bookNote.author }}</a>
+          <a class="author">{{ bookNote.userId }}</a>
         </div>
       </div>
       <div class="outer">
@@ -49,7 +51,29 @@ export default {
     // contents: String,
     // like: Number,
     // range: String
-    bookNote:Object
+    bookNote: Object,
+    noteKey: String
+  },
+  computed: {
+    rangeText() {
+      if(this.bookNote.isWholeBook === true){
+        console.log("Whole Book");
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.range_text = "Whole Book";
+        return this.range_text;
+      }
+      else{
+        console.log(this.bookNote.range1+" ~ "+this.bookNote.range2);
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.range_text = this.bookNote.range1+" ~ "+this.bookNote.range2;
+        return this.range_text;
+      }
+    }
+  },
+  data(){
+    return {
+      range_text: ""
+    }
   }
 };
 </script>

@@ -151,9 +151,10 @@ export default {
         position:relative;
         margin-left: auto;
         margin-right: auto;
+        background: white;
+        border-radius: 23px;
     }
     .popover{
-        z-index: 2;
         margin: 0 auto;
         padding: 0;
         width: 575px;

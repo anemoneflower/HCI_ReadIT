@@ -77,7 +77,7 @@ export default {
 
     .wrap {
         position: relative;
-        min-width: 650px;
+        min-width: 1300px;
         height: 100px;
         text-align: center;
         white-space: nowrap;

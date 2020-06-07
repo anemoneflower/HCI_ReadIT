@@ -3,10 +3,8 @@
     <div class="nav" v-if="isNotSignInPage()">
       <nav-bar></nav-bar>
     </div>
-    <div class="mini-search" v-if="isNotHome()">
-      <div class="bar">
-        <search-bar/>
-      </div>
+    <div class="bar" v-if="isNotHome() && isNotSignInPage()">
+      <search-bar/>
     </div>
     <div class="view">
       <router-view/>
@@ -52,20 +50,10 @@ export default {
   z-index: 1;
 }
 
-.mini-search {
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
-  z-index: 1;
-  width: 100%;
-  height: 110px;
-  background: white;
-}
-
 .bar {
   position: fixed;
-  right: 50px;
-  bottom: 30px;
+  top: 25.5px;
+  left: 340px;
   z-index: 2;
 }
 

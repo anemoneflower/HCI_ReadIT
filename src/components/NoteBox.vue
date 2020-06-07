@@ -5,17 +5,16 @@
       <div>
         <div class="title">
           <a class="title-text"> {{ bookNote.title }}</a>
-          <a class="author"> by. {{ bookNote.userId }}</a>
         </div>
         <div
           style="alignment: left; font-size: 15px; margin-top: 5px; margin-bottom: 10px"
         >
-          <a style="color: #3a3a3a; " :range_text="rangeText"
-            >- {{ range_text }} -</a
-          >
+          <a style="color: #3a3a3a; " :range_text="rangeText">{{
+            range_text
+          }}</a>
         </div>
         <div style="font-size: 15px">
-          <a class="date">{{ bookNote.date }}</a>
+          <a style="color: #959595">by.</a><a class="author">{{ bookNote.userId }}</a> <a style="color: #959595"> at.</a><a class="date">{{ bookNote.date }}</a>
         </div>
       </div>
       <div class="outer">
@@ -56,24 +55,24 @@ export default {
   },
   computed: {
     rangeText() {
-      if(this.bookNote.isWholeBook === true){
+      if (this.bookNote.isWholeBook === true) {
         console.log("Whole Book");
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.range_text = "Whole Book";
         return this.range_text;
-      }
-      else{
-        console.log(this.bookNote.range1+" ~ "+this.bookNote.range2);
+      } else {
+        console.log("p." + this.bookNote.range1 + " ~ " + this.bookNote.range2);
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.range_text = this.bookNote.range1+" ~ "+this.bookNote.range2;
+        this.range_text =
+          "p." + this.bookNote.range1 + " ~ " + this.bookNote.range2;
         return this.range_text;
       }
     }
   },
-  data(){
+  data() {
     return {
       range_text: ""
-    }
+    };
   }
 };
 </script>
@@ -94,14 +93,15 @@ export default {
 }
 
 .author {
-  margin-left: 5px;
+  /*margin-left: 5px;*/
+  margin-right: 5px;
   font-size: 15px;
   text-decoration: none;
   color: #3a3a3a;
 }
 
 .date {
-  margin-left: 5px;
+  /*margin-left: 5px;*/
   font-size: 15px;
   text-decoration: none;
   color: #3a3a3a;

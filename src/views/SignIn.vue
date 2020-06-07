@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" @keyup.enter.up ="keyPress">
         <router-link to="/"><img id="banner" src="../assets/logo.png"/></router-link>
         <div class="id">
             <input id="inputId" v-model="userId" type="text" placeholder="ID" autocomplete="off">
@@ -28,6 +28,7 @@
                 users: [],
                 userId:"",
                 userPw:"",
+                success:false
                 // checkSignIn:isSignIn
             };
         },
@@ -55,7 +56,6 @@
             signIn(){
                 var uid = this.userId;
                 var upw = this.userPw;
-                var success = false;
 
                 for(var i=0;i<(this.users).length;i++){
                     var userObj = this.users[i];
@@ -63,15 +63,36 @@
                         isSignIn.pop();
                         isSignIn.push(true);
                         userKey.push(userObj);
-                        success=true;
+                        this.success=true;
                     }
                 }
-                if(success){
+                if(this.success){
                     this.$router.push(current[0]);
                 }
                 else{
                     alert("Sign in is invalid");
                 }
+            },
+            keyPress(){
+                var uid = this.userId;
+                var upw = this.userPw;
+
+                for(var i=0;i<(this.users).length;i++){
+                    var userObj = this.users[i];
+                    if(userObj.userId==uid&&userObj.userPw==upw){
+                        isSignIn.pop();
+                        isSignIn.push(true);
+                        userKey.push(userObj);
+                        this.success=true;
+                    }
+                }
+                if(this.success){
+                    this.$router.push(current[0]);
+                }
+                else{
+                    alert("Sign in is invalid");
+                }
+
             }
         }
     }

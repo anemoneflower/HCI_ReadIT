@@ -181,6 +181,7 @@ export default {
   position: relative;
   top: 5px;
   left: 10px;
+  cursor: pointer;
 }
 
 #input {

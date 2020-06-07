@@ -4,16 +4,16 @@
       <!--style="display: grid; grid-template-columns: 15px auto">-->
       <div>
         <div class="title">
-          <a class="title-text"> {{ essayTitle }}</a>
+          <a class="title-text"> {{ bookNote.title }}</a>
         </div>
         <div
           style="alignment: left; font-size: 15px; margin-top: 5px; margin-bottom: 10px"
         >
-          <a style="color: #3a3a3a; ">- page 1~255 {{ range }}-</a>
+          <a style="color: #3a3a3a; ">- page {{bookNote.range1}}~{{ bookNote.range2 }}-</a>
         </div>
         <div style="font-size: 15px">
-          <a class="date">{{ date }}</a> |
-          <a class="author">{{ author }}</a>
+          <a class="date">{{ bookNote.date }}</a> |
+          <a class="author">{{ bookNote.author }}</a>
         </div>
       </div>
       <div class="outer">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="contents">
-      <p class="content">{{ contents }}</p>
+      <p class="content">{{ bookNote.content }}</p>
     </div>
     <div style="margin-bottom: 50px; margin-top: 30px">
       <img class="icon" id="eye" src="../assets/view.png" />
@@ -42,13 +42,14 @@
 export default {
   name: "NoteBox",
   props: {
-    date: String,
-    essayTitle: String,
-    author: String,
-    view: Number,
-    contents: String,
-    like: Number,
-    range: String
+    // date: String,
+    // essayTitle: String,
+    // author: String,
+    // view: Number,
+    // contents: String,
+    // like: Number,
+    // range: String
+    bookNote:Object
   }
 };
 </script>

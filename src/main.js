@@ -32,6 +32,7 @@ export let searchedList = new Array();
 export const bookNoteList = new Array();
 export const userKey = new Array();
 export const selectedBook = new Array();
+export const selectedBookNote = new Array();
 
 
 

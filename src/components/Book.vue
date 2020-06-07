@@ -11,8 +11,8 @@
 </template>
 
 <script>
-    import {bookNoteList, selectedBook} from "../main";
-    import firebase from "firebase";
+    import {selectedBook} from "../main";
+    // import firebase from "firebase";
 
     export default {
     props:{
@@ -22,28 +22,28 @@
     },
         methods:{
             goBoard(){
-                bookNoteList.splice(0, bookNoteList.length);
+                // bookNoteList.splice(0, bookNoteList.length);
                 selectedBook.splice(0, selectedBook.length);
                 var selected = this.book;
                 selectedBook.push(selected);
                 console.log(selectedBook.length);
                 console.log(selected);
-                firebase.database().ref('/bookNote').once('value',function(snapshot){
-
-                    var myValue = snapshot.val();
-                    var keyList = Object.keys(myValue);
-                    for(var i=keyList.length;i>0;i--) {
-                        var myKey = keyList[i-1];
-                        var book = myValue[myKey].bookKey;
-                        //if(myValue[myKey].title = "booktitle") 로 바꿔줘야함.
-                        if (book == selected.key) {
-                            var myBookNote = myValue[myKey];
-                            myBookNote.index = keyList.length-i+1;
-                            bookNoteList.push(myBookNote);
-                        }
-                    }
-                    console.log(bookNoteList);
-                });
+                // firebase.database().ref('/bookNote').once('value',function(snapshot){
+                //
+                //     var myValue = snapshot.val();
+                //     var keyList = Object.keys(myValue);
+                //     for(var i=keyList.length;i>0;i--) {
+                //         var myKey = keyList[i-1];
+                //         var book = myValue[myKey].bookKey;
+                //         //if(myValue[myKey].title = "booktitle") 로 바꿔줘야함.
+                //         if (book == selected.key) {
+                //             var myBookNote = myValue[myKey];
+                //             myBookNote.index = keyList.length-i+1;
+                //             bookNoteList.push(myBookNote);
+                //         }
+                //     }
+                //     console.log(bookNoteList);
+                // });
             }
         }
   }

@@ -15,7 +15,8 @@
 
 <script>
 import Card from "../components/Card.vue";
-import {bookNoteList} from "../main";
+import {bookNoteList, selectedBook} from "../main";
+import firebase from "firebase";
 
 export default {
   components: {
@@ -25,6 +26,25 @@ export default {
     return{
       bookNotes : bookNoteList
     }
+  },
+  created() {
+    bookNoteList.splice(0, bookNoteList.length);
+    firebase.database().ref('/bookNote').once('value',function(snapshot){
+
+      var myValue = snapshot.val();
+      var keyList = Object.keys(myValue);
+      for(var i=keyList.length;i>0;i--) {
+        var myKey = keyList[i-1];
+        var book = myValue[myKey].bookKey;
+        //if(myValue[myKey].title = "booktitle") 로 바꿔줘야함.
+        if (book == selectedBook[0].key) {
+          var myBookNote = myValue[myKey];
+          myBookNote.index = keyList.length-i+1;
+          bookNoteList.push(myBookNote);
+        }
+      }
+      console.log(bookNoteList);
+    });
   }
 }
 </script>

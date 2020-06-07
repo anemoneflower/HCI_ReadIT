@@ -145,26 +145,30 @@ export default {
 </script>
 
 <style scoped>
-.autocomplete {
-  width: 100%;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-.popover {
-  margin: 0 auto;
-  padding: 0;
-  width: 575px;
-  border: 1px solid #dcdcdc;
-  position: relative;
-  left: 0;
-  right: 0;
-  border-radius: 23px;
-  list-style-type: none;
-}
-.popover:hover {
-  box-shadow: 1px 1px 8px 1px #dcdcdc;
-}
+
+    .autocomplete{
+        width:100%;
+        position:relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .popover{
+        z-index: 2;
+        margin: 0 auto;
+        padding: 0;
+        width: 575px;
+        border:1px solid #dcdcdc;
+        position:relative;
+        left:0;
+        right :0;
+        border-radius:23px;
+        list-style-type: none;
+    }
+    .popover:hover {
+      box-shadow: 1px 1px 8px 1px #dcdcdc;
+    }
+
+
 
 .popover:focus-within {
   box-shadow: 1px 1px 8px 1px #dcdcdc;

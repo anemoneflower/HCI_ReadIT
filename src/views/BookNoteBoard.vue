@@ -9,6 +9,7 @@
     <p v-else>
       Nothing left in the list.
     </p>
+
   </div>
 </template>
 

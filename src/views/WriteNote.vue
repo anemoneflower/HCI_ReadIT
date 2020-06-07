@@ -1,11 +1,7 @@
 <template>
   <div class="WriteNote" style="margin-top: 200px">
-    <a
-      :book="defaultBook"
-      class="bookTitle"
-      style="margin: auto; text-align: center;"
-    >
-      {{ book }}
+    <a class="bookTitle" style="margin: auto; text-align: center;">
+      {{ bookTitle }}
     </a>
     <div class="outer">
       <div class="inner"></div>
@@ -78,25 +74,15 @@
 <script>
 // import firebase from "firebase";
 import { db } from "../main";
+import { userKey, selectedBook } from "../main";
 
 export default {
   name: "WriteNote",
-  props: {
-    book: {
-      type: String,
-      default: "You need to find a book First!"
-    },
-    bookKey: String,
-    authorKey: String
-  },
-  computed: {
-    defaultBook() {
-      if (this.book === "") return this.book.default;
-      return this.book;
-    }
-  },
   data() {
     return {
+      userKey: userKey[0].key,
+      bookKey: selectedBook[0].key,
+      bookTitle: selectedBook[0].title,
       title: "",
       isWholeBook: false,
       content: "",
@@ -114,9 +100,9 @@ export default {
     // },
     submit_note: function() {
       //TODO: need to link with firebase here
-      console.log(this.title);
-      console.log(this.isWholeBook);
-      console.log(this.content);
+      console.log(this.bookTitle);
+      console.log(this.bookKey);
+      console.log(this.userKey);
       console.log(this.isShare);
       var noteKey = db.ref("bookNote").push({
         title: this.title,
@@ -128,7 +114,7 @@ export default {
         share: this.isShare,
 
         book: this.bookKey,
-        author: this.authorKey,
+        author: this.userKey,
 
         view: 0,
         up: 0
@@ -139,6 +125,7 @@ export default {
           _key: noteKey
         });
       // TODO: set routing
+      this.$router.push({ path: `/read-note/${noteKey}` });
     }
   }
 };

@@ -1,14 +1,14 @@
 <template>
     <div>
-        <ul v-if="books.length">
+        <div class="booklist" v-if="books.length">
             <router-link to="/book-note-board">
                 <Book
-                v-for="book in books"
-                :key = "book.key"
-                :book="book"
-            />
+                    v-for="book in books"
+                    :key = "book.key"
+                    :book="book"
+                />
             </router-link>
-        </ul>
+        </div>
         <p v-else>
             Nothing left in the list.
         </p>
@@ -34,5 +34,16 @@
 </script>
 
 <style scoped>
+  .booklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+    grid-auto-rows:minmax(300px, auto);
+    column-gap: 40px;
+    row-gap: 20px;
+  }
 
+  .item {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
 </style>

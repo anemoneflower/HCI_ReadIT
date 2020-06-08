@@ -26,8 +26,9 @@
 <!--      <li  v-if="visibleOptions" >-->
       <div class="options" ref="optionsList" @focusout="selectAction=false">
         <ul >
-          <li
+          <li id="auto"
                   @focuson = "selectAction=true"
+                  @mousemove = "keyDown=false"
             :key="index"
             v-for="(match, index) in matches"
             @mousedown="bookSelected(index), visibleOptions=true"
@@ -55,7 +56,7 @@ export default {
       visibleOptions: true,
       selected: 0,
       keyDown: false,
-      selectAction : false
+      selectAction : false,
     };
   },
   directives: {
@@ -101,11 +102,12 @@ export default {
       this.$router.push("/book-list");
     },
     hover(index) {
-      // this.selectAction = true;
-      this.selected = index;
+      if(this.keyDown==false){
+        this.selected = index;
+      }
     },
     keyup() {
-      // this.keyDown = true;
+      this.keyDown = true;
       if (this.selected == 0) {
         return;
       }
@@ -114,7 +116,7 @@ export default {
       this.scroll();
     },
     keydown() {
-      // this.keyDown = true;
+      this.keyDown = true;
       if (this.selected < this.matches.length - 1) {
         this.selected += 1;
         // this.title = this.matches[this.selected];
@@ -128,14 +130,6 @@ export default {
       this.title = this.matches[this.selected];
       this.selectedBook = this.matches[this.selected];
       this.searchBook();
-    },
-    checkVisible(){
-      if(this.selectAction==true){
-        this.visibleOptions=true;
-      }
-      else{
-        this.visibleOptions=false;
-      }
     }
   },
   computed: {
@@ -146,11 +140,6 @@ export default {
       if(this.visibleOptions==false&&this.selectAction==false){
         return [];
       }
-      // if (this.keyDown == true) {
-      //   return;
-      // }
-      console.log(bookTitle);
-
 
       return this.books.filter(book =>
           book.toLowerCase().includes(this.title.toLowerCase())
@@ -242,9 +231,9 @@ export default {
   cursor: pointer;
   background-color: white;
 }
-.options ul li:hover {
-  background-color: #dcdcdc;
-}
+/*.options ul li:hover {*/
+/*  background-color: #dcdcdc;*/
+/*}*/
 
 .options ul li.selected {
   background-color: #dcdcdc;

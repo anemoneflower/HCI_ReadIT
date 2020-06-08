@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="content-box">
-          <p class="content">{{ bookNote.content }}</p>
+          <p class="content" v-html="bookNote.content"></p>
           <!-- change author name -->
           <a class="author">{{ bookNote.userId }}</a>
         </div>

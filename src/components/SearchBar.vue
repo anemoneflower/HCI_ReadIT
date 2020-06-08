@@ -100,6 +100,9 @@ export default {
         }
       }
       this.$router.push("/book-list");
+      this.visibleOptions=false;
+      this.selectAction = false;
+      this.title = "";
     },
     hover(index) {
       if(this.keyDown==false){
@@ -130,6 +133,9 @@ export default {
       this.title = this.matches[this.selected];
       this.selectedBook = this.matches[this.selected];
       this.searchBook();
+    },
+    initialCount(){
+      this.selected=0;
     }
   },
   computed: {
@@ -140,7 +146,7 @@ export default {
       if(this.visibleOptions==false&&this.selectAction==false){
         return [];
       }
-
+      this.initialCount();
       return this.books.filter(book =>
           book.toLowerCase().includes(this.title.toLowerCase())
       );

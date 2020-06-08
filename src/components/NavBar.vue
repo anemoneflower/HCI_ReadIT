@@ -2,7 +2,7 @@
     <div class = "wrap" :style="[(quizIsOpen || bookNoteIsOpen) ? {'height': '180px', 'transition': 'all 0.1s ease'} : {'height': '100px', 'transition': 'all 0.3s ease'}]">
         <router-link to="/"><img id="banner" src="../assets/logo.png"/></router-link>
         <!-- <ul v-if="isSignIn" class="main-menu"> -->
-        <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn && selected">
+        <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn" v-on:click="select()">
             <li><a @mouseover="bookNoteIsOpen = true">BookNotes</a>
                 <ul id="booknote-submenu" v-if="bookNoteIsOpen">
                     <li><router-link to="/book-note-board"><a @click="bookNoteIsOpen = false">Read Notes</a></router-link></li>
@@ -57,17 +57,22 @@ export default {
             //     });
             //     console.log(userList);
             // }
-        }
-    },
-    computed:{
-        select(){
-            if(selectedBook.length!=0){
-                return true
-            }
-            else{
-                return false
+        },
+        select() {
+            if(selectedBook.length==0){
+                alert("Please search & select book!");
             }
         },
+    },
+    computed:{
+        // select(){
+        //     if(selectedBook.length!=0){
+        //         return true
+        //     }
+        //     else{
+        //         return false
+        //     }
+        // },
         userSignIn(){
             if(userKey.length==0){
                 return;

@@ -1,5 +1,5 @@
 <template>
-  <div class="WriteNote" style="margin-top: 200px">
+  <div class="WriteNote" style="margin-top: 150px">
     <a class="bookTitle" style="margin: auto; text-align: center;">
       {{ bookTitle }}
     </a>

@@ -1,6 +1,6 @@
 <template>
   <div class="NoteBox" style="width: 800px; margin: auto;">
-    <div style="margin-top: 150px">
+    <div style="margin-top: 100px">
       <!--style="display: grid; grid-template-columns: 15px auto">-->
       <div>
         <div class="title">

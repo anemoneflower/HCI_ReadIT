@@ -1,12 +1,12 @@
 <template>
   <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key } }"
     ><!--    <router-link :to="/read-note/${bookNote.key}">:to="{ name: 'user', params: { userId: 123 }}"-->
-    <div class="card-post" @click="goBookNote">
+    <div class="card-post">
       <!-- need to get note-key(id) and route. -->
-      <div class="square">
+      <div class="square" @click="goBookNote">
         <div class="board-info">
           <a class="entry">#{{ bookNote.index }}</a>
-          <a class="range">{{ bookNote.range1 }}~{{ bookNote.range2 }}p</a>
+          <a class="range" :range_text="rangeText">{{ range_text }}</a>
         </div>
         <div class="representative">
           <div class="title">{{ bookNote.title }}</div>
@@ -42,12 +42,33 @@ export default {
       type: Object
     }
   },
+  data() {
+    return {
+      range_text: ""
+    };
+  },
   methods: {
     goBookNote() {
       selectedBookNote.splice(0, selectedBookNote.length);
       console.log(selectedBookNote);
       selectedBookNote.push(this.bookNote);
       console.log(selectedBookNote);
+    }
+  },
+  computed: {
+    rangeText() {
+      if (this.bookNote.isWholeBook === true) {
+        console.log("Whole Book");
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.range_text = "Whole Book";
+        return this.range_text;
+      } else {
+        console.log("p." + this.bookNote.range1 + " ~ " + this.bookNote.range2);
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.range_text =
+          this.bookNote.range1 + " ~ " + this.bookNote.range2 + "p";
+        return this.range_text;
+      }
     }
   }
 };

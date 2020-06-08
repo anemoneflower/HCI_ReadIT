@@ -5,8 +5,8 @@
         <ul class="main-menu" id="booknote" @mouseleave="bookNoteIsOpen = false" v-if="isSignIn" v-on:click="select()">
             <li><a @mouseover="bookNoteIsOpen = true">BookNotes</a>
                 <ul id="booknote-submenu" v-if="bookNoteIsOpen">
-                    <li><router-link to="/book-note-board"><a @click="bookNoteIsOpen = false">Read Notes</a></router-link></li>
-                    <li><router-link to="/write-note"><a @click="bookNoteIsOpen = false">Write Note</a></router-link></li>
+                    <li @click="goReadNote"><a @click="bookNoteIsOpen = false">Read Notes</a></li>
+                    <li @click="goWriteNote"><a @click="bookNoteIsOpen = false">Write Note</a></li>
                 </ul>
             </li>
         </ul>
@@ -58,9 +58,20 @@ export default {
             //     console.log(userList);
             // }
         },
-        select() {
+        goReadNote() {
             if(selectedBook.length==0){
                 alert("Please search & select book!");
+            }
+            else{
+                this.$router.push("/book-note-board");
+            }
+        },
+        goWriteNote() {
+            if(selectedBook.length==0){
+                alert("Please search & select book!");
+            }
+            else{
+                this.$router.push("/write-note");
             }
         },
     },

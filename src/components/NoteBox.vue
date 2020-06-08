@@ -14,7 +14,10 @@
           }}</a>
         </div>
         <div style="font-size: 15px">
-          <a style="color: #959595">by.</a><a class="author">{{ bookNote.userId }}</a> <a style="color: #959595"> at.</a><a class="date">{{ bookNote.date }}</a>
+          <a style="color: #959595">by.</a
+          ><a class="author">{{ bookNote.userId }}</a>
+          <a style="color: #959595"> at.</a
+          ><a class="date">{{ bookNote.date }}</a>
         </div>
       </div>
       <div class="outer">
@@ -26,20 +29,22 @@
     </div>
     <div style="margin-bottom: 50px; margin-top: 30px">
       <img class="icon" id="eye" src="../assets/view.png" />
-      <a class="view">1312</a>
+      <a class="view">{{ bookNote.view }}</a>
       <a style="margin-left: 15px">
         <button
           style="outline: none; background: none; border: none; padding: 0"
+          @click="likeUp"
         >
           <img class="icon" id="thumbs" src="../assets/thumbs.png" />
+          <a class="up">{{ bookNote.up }}</a>
         </button>
-        <a class="up">87</a>
       </a>
     </div>
   </div>
 </template>
 
 <script>
+import { db } from "../main";
 export default {
   name: "NoteBox",
   props: {
@@ -69,9 +74,31 @@ export default {
       }
     }
   },
+  methods: {
+    likeUp() {
+      if (this.liked === false) {
+        db.ref("bookNote")
+          .child(this.noteKey)
+          .update({
+            up: this.bookNote.up + 1
+          });
+        this.bookNote.up = this.bookNote.up + 1;
+        this.liked = true;
+      } else {
+        db.ref("bookNote")
+          .child(this.noteKey)
+          .update({
+            up: this.bookNote.up - 1
+          });
+        this.bookNote.up = this.bookNote.up - 1;
+        this.liked = false;
+      }
+    }
+  },
   data() {
     return {
-      range_text: ""
+      range_text: "",
+      liked: false
     };
   }
 };

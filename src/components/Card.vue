@@ -13,14 +13,15 @@
           <div class="post-info">
             <!-- local date format -->
             <!--                    <a class="date">4 JUN 2020</a><br>-->
-            <a class="date">{{ bookNote.date }}</a
-            ><br />
+            <a class="date">{{ bookNote.date }}</a><br/>
+            <div class="status">
             <!-- view icon -->
-            <img class="icon" id="eye" src="../assets/view.png" />
-            <a class="view">{{ bookNote.view }}</a>
+              <img class="icon" id="eye" src="../assets/view.png" />
+              <a class="view">{{ bookNote.view }}</a>
             <!-- up icon -->
-            <img class="icon" id="thumbs" src="../assets/thumbs.png" />
-            <a class="up">{{ bookNote.up }}</a>
+              <img class="icon" id="thumbs" src="../assets/thumbs.png" />
+              <a class="up">{{ bookNote.up }}</a>
+            </div>
           </div>
         </div>
         <div class="content-box">
@@ -78,7 +79,15 @@ export default {
   -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
+a:visited{
+  text-decoration: none;
+  color: #3a3a3a;
+}
 
+a:link{
+  text-decoration: none;
+  color: #3a3a3a;
+}
 .board-info {
   margin: auto;
   padding-top: 20px;
@@ -114,6 +123,11 @@ export default {
 }
 
 .post-info {
+  float: right;
+  position: relative;
+}
+
+.status {
   float: right;
   position: relative;
 }

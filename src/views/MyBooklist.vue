@@ -2,12 +2,13 @@
     <div>
         <div class="result">My Bookshelf</div>
         <div class="booklist" v-if="books.length">
-            <div  :key = "book.key" v-for="book in books">
-                <router-link to="/my-note">
+            <div  :key = "book.key" v-for="(book,index) in books" @click="goMyNote(index)">
+<!--                <router-link to="/my-note">-->
                     <Book
                             :book="book"
+
                     />
-                </router-link>
+<!--                </router-link>-->
             </div>
         </div>
         <p v-else>
@@ -18,7 +19,7 @@
 
 <script>
     import Book from './../components/Book.vue'
-    import {myBookNotes, myBooks, userKey} from "../main";
+    import {myBookNotes, myBooks, selectedMyBook, userKey} from "../main";
     import firebase from "firebase";
 
     export default {
@@ -64,6 +65,17 @@
         data() {
             return{
                 books:myBooks
+            }
+        },
+        methods:{
+            goMyNote(index){
+                console.log("MYBOOKS"+ myBooks[0]);
+                selectedMyBook.splice(0, selectedMyBook.length);
+                var selected = this.books[index];
+                selectedMyBook.push(selected);
+                this.$router.push("/my-note");
+                // console.log(selectedMyBook.length);
+                // console.log(selected);
             }
         }
     }

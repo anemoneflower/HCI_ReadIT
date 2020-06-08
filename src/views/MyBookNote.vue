@@ -16,7 +16,7 @@
 
 <script>
     import Card from "../components/Card.vue";
-    import {bookNoteList, myBookNotes, selectedBook} from "../main";
+    import {bookNoteList, myBookNotes, selectedMyBook} from "../main";
 
 
     export default {
@@ -26,7 +26,7 @@
         data(){
             return{
                 bookNotes : bookNoteList,
-                bookTitle : selectedBook[0].title
+                bookTitle : selectedMyBook[0].title
             }
         },
         created() {
@@ -34,7 +34,7 @@
             bookNoteList.splice(0, bookNoteList.length);
             // var index = 1;
             for(var i=myBookNotes.length;i>0;i--){
-                if(myBookNotes[i-1].bookKey==selectedBook[0].key){
+                if(myBookNotes[i-1].bookKey==selectedMyBook[0].key){
                     // var bookNote = myBookNotes[i-1];
                     // bookNote.index =  index;
                     // index++;

@@ -2,12 +2,13 @@
     <div>
         <div class="result">Search result</div>
         <div class="booklist" v-if="books.length">
-            <div  :key = "book.key" v-for="book in books">
-                <router-link to="/book-note-board">
+            <div  :key = "book.key" v-for="(book,index) in books" @click="goBoard(index)">
+<!--                <router-link to="/book-note-board">-->
                     <Book
                         :book="book"
+
                     />
-                </router-link>
+<!--                </router-link>-->
             </div>
         </div>
         <p v-else>
@@ -18,7 +19,7 @@
 
 <script>
   import Book from './../components/Book.vue'
-  import { searchedList} from "../main";
+  import {searchedList, selectedBook} from "../main";
   // import firebase from "firebase";
 
   export default {
@@ -30,7 +31,17 @@
         books:
         searchedList
       }
-    }
+    },
+      methods:{
+        goBoard(index){
+            selectedBook.splice(0, selectedBook.length);
+            var selected = this.books[index];
+            selectedBook.push(selected);
+            console.log(selectedBook.length);
+            console.log(selected);
+            this.$router.push("/book-note-board");
+        }
+      }
   }
 </script>
 

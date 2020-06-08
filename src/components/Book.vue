@@ -1,5 +1,5 @@
 <template>
-    <div class = "book-wrap"  @click= "goBoard" >
+    <div class = "book-wrap" >
       <img class="thumbnail" :src= book.img style="position: relative;">
       <div class="book-info">
         <h1 class="title">{{ book.title }}</h1>
@@ -11,23 +11,23 @@
 </template>
 
 <script>
-    import {selectedBook} from "../main";
-    // import firebase from "firebase";
+    // import {selectedBook} from "../main";
+    // // import firebase from "firebase";
 
     export default {
     props:{
       book : {
         type : Object
       }
-    },
-        methods:{
-            goBoard(){
+    }
+        // methods:{
+        //     goBoard(){
                 // bookNoteList.splice(0, bookNoteList.length);
-                selectedBook.splice(0, selectedBook.length);
-                var selected = this.book;
-                selectedBook.push(selected);
-                console.log(selectedBook.length);
-                console.log(selected);
+                // selectedBook.splice(0, selectedBook.length);
+                // var selected = this.book;
+                // selectedBook.push(selected);
+                // console.log(selectedBook.length);
+                // console.log(selected);
                 // firebase.database().ref('/bookNote').once('value',function(snapshot){
                 //
                 //     var myValue = snapshot.val();
@@ -44,8 +44,8 @@
                 //     }
                 //     console.log(bookNoteList);
                 // });
-            }
-        }
+        //     }
+        // }
   }
 </script>
 

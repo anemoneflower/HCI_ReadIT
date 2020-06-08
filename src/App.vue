@@ -16,6 +16,7 @@
 <script>
 import NavBar from "@/components/NavBar.vue";
 import SearchBar from "@/components/SearchBar.vue"
+// import {selectedBook} from "./main";
 
 export default {
   components: {
@@ -28,6 +29,24 @@ export default {
     },
     isNotSignInPage() {
       return this.$router.history.current["path"] != "/sign-in"
+    },
+    isNotBoardPage(){
+      return this.$router.history.current["path"] != "/book-note-board";
+      // if(selectedBook.length!=0){
+      //   return true
+      // }
+      // else{
+      //   return false
+      // }
+    },
+    isBoardPage(){
+      return this.$router.history.current["path"] == "/book-note-board";
+      // if(selectedBook.length!=0){
+      //   return true
+      // }
+      // else{
+      //   return false
+      // }
     }
   }
 }
@@ -58,6 +77,15 @@ body {
 
 .nav {
   position: absolute;
+  background: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.nav2 {
+  position: fixed;
   background: white;
   top: 0;
   left: 0;

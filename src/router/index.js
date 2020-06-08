@@ -72,6 +72,20 @@ const routes = [
     component: function() {
       return import("../views/SignIn.vue");
     }
+  },
+  {
+    path: "/my-page",
+    name: "MyBooklist",
+    component: function() {
+      return import("../views/MyBooklist.vue");
+    }
+  },
+  {
+    path: "/my-note",
+    name: "MyBookNote",
+    component: function() {
+      return import("../views/MyBookNote.vue");
+    }
   }
 ];
 

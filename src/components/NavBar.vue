@@ -37,7 +37,8 @@ export default {
             isSelected: true,
             isSignIn:isSignIn[0],
             bookNoteIsOpen:false,
-            quizIsOpen:false
+            quizIsOpen:false,
+            selected : selectedBook.length
         }
     },
     methods: {
@@ -59,7 +60,7 @@ export default {
         }
     },
     computed:{
-        selected(){
+        select(){
             if(selectedBook.length!=0){
                 return true
             }

@@ -37,25 +37,24 @@ export const myBooks = new Array();
 export const myBookNotes = new Array();
 export const selectedMyBook = new Array();
 
-
-
-firebase.database().ref('/Book').once('value',function(snapshot){
-
-  var myValue = snapshot.val();
-  var keyList = Object.keys(myValue);
-  for(var i=0;i<keyList.length;i++) {
-    var myKey = keyList[i];
-    if(i<7){
-      var title = myValue[myKey].title;
-      bookTitle.push(title);
+firebase
+  .database()
+  .ref("/Book")
+  .once("value", function(snapshot) {
+    var myValue = snapshot.val();
+    var keyList = Object.keys(myValue);
+    for (var i = 0; i < keyList.length; i++) {
+      var myKey = keyList[i];
+      if (i < 7) {
+        var title = myValue[myKey].title;
+        bookTitle.push(title);
+      }
+      var myBook = myValue[myKey];
+      myBook.key = myKey;
+      bookList.push(myBook);
     }
-    var myBook = myValue[myKey];
-    myBook.key = myKey;
-    bookList.push(myBook);
-  }
-  console.log(bookList);
-});
-
+    console.log(bookList);
+  });
 
 new Vue({
   router,

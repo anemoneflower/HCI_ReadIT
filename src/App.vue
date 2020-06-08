@@ -5,17 +5,17 @@
         <nav-bar></nav-bar>
       </div>
       <div class="bar" v-if="isNotHome() && isNotSignInPage()">
-        <search-bar/>
+        <search-bar />
       </div>
     </div>
     <div class="view">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 <script>
 import NavBar from "@/components/NavBar.vue";
-import SearchBar from "@/components/SearchBar.vue"
+import SearchBar from "@/components/SearchBar.vue";
 // import {selectedBook} from "./main";
 
 export default {
@@ -28,9 +28,9 @@ export default {
       return this.$router.history.current["path"] != "/";
     },
     isNotSignInPage() {
-      return this.$router.history.current["path"] != "/sign-in"
+      return this.$router.history.current["path"] != "/sign-in";
     },
-    isNotBoardPage(){
+    isNotBoardPage() {
       return this.$router.history.current["path"] != "/book-note-board";
       // if(selectedBook.length!=0){
       //   return true
@@ -39,7 +39,7 @@ export default {
       //   return false
       // }
     },
-    isBoardPage(){
+    isBoardPage() {
       return this.$router.history.current["path"] == "/book-note-board";
       // if(selectedBook.length!=0){
       //   return true
@@ -49,7 +49,7 @@ export default {
       // }
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -68,7 +68,7 @@ body {
 }
 
 .top {
-  position:-webkit-sticky;
+  position: -webkit-sticky;
   position: sticky;
   margin-top: -100px;
   z-index: 3;
@@ -104,5 +104,4 @@ body {
   position: relative;
   padding-top: 180px;
 }
-
 </style>

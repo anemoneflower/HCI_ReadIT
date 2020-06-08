@@ -1,6 +1,6 @@
-<template >
-  <div class="autocomplete" >
-    <ul class="popover" >
+<template>
+  <div class="autocomplete">
+    <ul class="popover">
       <li>
         <input
           autocomplete="off"
@@ -13,7 +13,7 @@
           @keydown.enter="enter"
           v-focus
           @focus="visibleOptions = true"
-          @focusout="visibleOptions=false"
+          @focusout="visibleOptions = false"
         />
         <a
           ><img
@@ -23,22 +23,23 @@
             title="this is search bar"
         /></a>
       </li>
-<!--      <li  v-if="visibleOptions" >-->
-      <div class="options" ref="optionsList" @focusout="selectAction=false">
-        <ul >
-          <li id="auto"
-                  @focuson = "selectAction=true"
-                  @mousemove = "keyDown=false"
+      <!--      <li  v-if="visibleOptions" >-->
+      <div class="options" ref="optionsList" @focusout="selectAction = false">
+        <ul>
+          <li
+            id="auto"
+            @focuson="selectAction = true"
+            @mousemove="keyDown = false"
             :key="index"
             v-for="(match, index) in matches"
-            @mousedown="bookSelected(index), visibleOptions=true"
+            @mousedown="bookSelected(index), (visibleOptions = true)"
             @mouseenter="hover(index)"
             :class="{ selected: selected == index }"
             v-text="match"
           ></li>
         </ul>
       </div>
-<!--      </li>-->
+      <!--      </li>-->
     </ul>
   </div>
 </template>
@@ -56,7 +57,7 @@ export default {
       visibleOptions: true,
       selected: 0,
       keyDown: false,
-      selectAction : false,
+      selectAction: false
     };
   },
   directives: {
@@ -67,7 +68,7 @@ export default {
     }
   },
   created() {
-    this.selectAction=false;
+    this.selectAction = false;
   },
   methods: {
     bookSelected(index) {
@@ -100,12 +101,12 @@ export default {
         }
       }
       this.$router.push("/book-list");
-      this.visibleOptions=false;
+      this.visibleOptions = false;
       this.selectAction = false;
       this.title = "";
     },
     hover(index) {
-      if(this.keyDown==false){
+      if (this.keyDown == false) {
         this.selected = index;
       }
     },
@@ -134,8 +135,8 @@ export default {
       this.selectedBook = this.matches[this.selected];
       this.searchBook();
     },
-    initialCount(){
-      this.selected=0;
+    initialCount() {
+      this.selected = 0;
     }
   },
   computed: {
@@ -143,12 +144,12 @@ export default {
       if (this.title == "") {
         return [];
       }
-      if(this.visibleOptions==false&&this.selectAction==false){
+      if (this.visibleOptions == false && this.selectAction == false) {
         return [];
       }
       this.initialCount();
       return this.books.filter(book =>
-          book.toLowerCase().includes(this.title.toLowerCase())
+        book.toLowerCase().includes(this.title.toLowerCase())
       );
     }
   }
@@ -156,31 +157,28 @@ export default {
 </script>
 
 <style scoped>
-
-    .autocomplete{
-        width:100%;
-        position:relative;
-        margin-left: auto;
-        margin-right: auto;
-        background: white;
-        border-radius: 23px;
-    }
-    .popover{
-        margin: 0 auto;
-        padding: 0;
-        width: 575px;
-        border:1px solid #dcdcdc;
-        position:relative;
-        left:0;
-        right :0;
-        border-radius:23px;
-        list-style-type: none;
-    }
-    .popover:hover {
-      box-shadow: 1px 1px 8px 1px #dcdcdc;
-    }
-
-
+.autocomplete {
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  border-radius: 23px;
+}
+.popover {
+  margin: 0 auto;
+  padding: 0;
+  width: 575px;
+  border: 1px solid #dcdcdc;
+  position: relative;
+  left: 0;
+  right: 0;
+  border-radius: 23px;
+  list-style-type: none;
+}
+.popover:hover {
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
 
 .popover:focus-within {
   box-shadow: 1px 1px 8px 1px #dcdcdc;

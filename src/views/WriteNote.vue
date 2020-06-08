@@ -107,7 +107,9 @@ export default {
       console.log(Date().toString());
       this.content = this.content.replace(/(\r\n|\n|\r)/gm, "<br>");
 
-      var date = Date().toString().split(" ");
+      var date = Date()
+        .toString()
+        .split(" ");
       date.splice(0, 1);
       date.splice(0, 0, date[1]);
       date.splice(2, 1);
@@ -117,7 +119,7 @@ export default {
 
       var noteKey = db.ref("bookNote").push({
         title: this.title,
-        date: date.join(' '),
+        date: date.join(" "),
         isWholeBook: this.isWholeBook,
         range1: this.range1,
         range2: this.range2,

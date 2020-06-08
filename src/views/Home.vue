@@ -18,15 +18,15 @@ export default {
 </script>
 
 <style scoped>
-  .home {
-    position: relative;
-  }
+.home {
+  position: relative;
+}
 
-  .jo {
-    position: relative;
-    margin: auto;
-    margin-top: 120px;
-    margin-bottom: 20px;
-    width: 575px;
-  }
+.jo {
+  position: relative;
+  margin: auto;
+  margin-top: 120px;
+  margin-bottom: 20px;
+  width: 575px;
+}
 </style>

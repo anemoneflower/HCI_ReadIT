@@ -1,7 +1,7 @@
 <template>
   <!--    <router-link :to="/read-note/${bookNote.key}">:to="{ name: 'user', params: { userId: 123 }}"-->
-    <div class="card-post">
-      <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key } }">
+  <div class="card-post">
+    <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key } }">
       <!-- need to get note-key(id) and route. -->
       <div class="square" @click="goBookNote">
         <div class="board-info">
@@ -13,12 +13,13 @@
           <div class="post-info">
             <!-- local date format -->
             <!--                    <a class="date">4 JUN 2020</a><br>-->
-            <a class="date">{{ bookNote.date }}</a><br/>
+            <a class="date">{{ bookNote.date }}</a
+            ><br />
             <div class="status">
-            <!-- view icon -->
+              <!-- view icon -->
               <img class="icon" id="eye" src="../assets/view.png" />
               <a class="view">{{ bookNote.view }}</a>
-            <!-- up icon -->
+              <!-- up icon -->
               <img class="icon" id="thumbs" src="../assets/thumbs.png" />
               <a class="up">{{ bookNote.up }}</a>
             </div>
@@ -29,9 +30,9 @@
           <!-- change author name -->
           <a class="author">{{ bookNote.userId }}</a>
         </div>
-      </div>  
-      </router-link>
-    </div>
+      </div>
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -100,12 +101,12 @@ export default {
   -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
-a:visited{
+a:visited {
   text-decoration: none;
   color: #3a3a3a;
 }
 
-a:link{
+a:link {
   text-decoration: none;
   color: #3a3a3a;
 }

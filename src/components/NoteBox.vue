@@ -187,7 +187,7 @@ export default {
 
 #eye {
   position: relative;
-  top:3.5px;
+  top: 3.5px;
   right: 3px;
   height: 16.8px;
   margin: auto;

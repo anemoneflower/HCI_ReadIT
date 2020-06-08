@@ -1,7 +1,7 @@
 <template>
-  <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key } }"
-    ><!--    <router-link :to="/read-note/${bookNote.key}">:to="{ name: 'user', params: { userId: 123 }}"-->
+  <!--    <router-link :to="/read-note/${bookNote.key}">:to="{ name: 'user', params: { userId: 123 }}"-->
     <div class="card-post">
+      <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key } }">
       <!-- need to get note-key(id) and route. -->
       <div class="square" @click="goBookNote">
         <div class="board-info">
@@ -29,9 +29,9 @@
           <!-- change author name -->
           <a class="author">{{ bookNote.userId }}</a>
         </div>
-      </div>
+      </div>  
+      </router-link>
     </div>
-  </router-link>
 </template>
 
 <script>
@@ -77,10 +77,10 @@ export default {
 
 <style scoped>
 .card-post {
-  display: box;
+  display: flex;
   justify-content: center;
   padding: 10px;
-  padding-left: 30%;
+  margin: auto;
 }
 .square {
   width: 800px;
@@ -176,6 +176,7 @@ a:link{
   float: left;
   text-align: left;
   font-size: 25px;
+  width: 500px;
   color: #3a3a3a;
   text-decoration: none;
   text-overflow: ellipsis;

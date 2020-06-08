@@ -140,7 +140,7 @@ export default {
           _key: noteKey
         });
       // TODO: set routing
-      this.$router.push({ path: `/book-note-board` });
+      this.$router.push({ path: `/read-note/${noteKey}` });
     }
   }
 };

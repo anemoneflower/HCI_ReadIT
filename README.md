@@ -1,4 +1,14 @@
-# ReadIT
+# KAIST CS374: ReadIT!
+
+## WebPage URL
+https://hci-readit.web.app/
+
+## Target User
+This is service for Readers who want to recall contents of the book after paused their reading.
+
+## Libraries and frameworks
+### Vue.js
+### Firebase
 
 ## Project setup
 ```
@@ -21,12 +31,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## To start
-```
-vue ui
-```
-go to tasks -> serve -> run(실행) -> 앱 열기

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <ul v-if = "bookNotes.length">
+    <div class="page-info">
+      <div>BookNotes : {{ book.title }}</div>
+      <!-- <div class="title">{{ book.title }}</div> -->
+    </div>
+    <ul class="bookNoteList" v-if = "bookNotes.length">
       <card v-for = "bookNote in bookNotes"
             :key = "bookNote.id"
             :bookNote = "bookNote">
@@ -24,7 +28,8 @@ export default {
   },
   data(){
     return{
-      bookNotes : bookNoteList
+      bookNotes : bookNoteList,
+      book: selectedBook[0]
     }
   },
   created() {
@@ -49,5 +54,19 @@ export default {
 }
 </script>
 <style scoped>
-
+  .page-info {
+    position: relative;
+    text-align: left;
+    font-size: 25px;
+    padding-top: 50px;
+    padding-left: 120px;
+  }
+  .bookNoteList {
+    position: relative;
+    padding-top: 20px;
+  }
+  /* .title {
+    position: relative;
+    float: left;
+  } */
 </style>

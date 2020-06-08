@@ -168,24 +168,31 @@ export default {
   -webkit-box-orient: vertical;
 }
 
-#thumbs {
-  position: relative;
-  top: 2.3px;
-  height: 15px;
-  right: 3px;
+.up {
+  font-size: 15px;
+  color: #3a3a3a;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .view {
   margin: auto;
+  font-size: 15px;
+  color: #3a3a3a;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #eye {
   position: relative;
-  top: 2.3px;
+  top:3.5px;
   right: 3px;
   height: 16.8px;
   margin: auto;
 }
+
 #thumbs {
   position: relative;
   top: 2.3px;

@@ -1,30 +1,31 @@
 <template>
   <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key } }"
     ><!--    <router-link :to="/read-note/${bookNote.key}">:to="{ name: 'user', params: { userId: 123 }}"-->
-    <div class="card-post" @click="goBookNote">
+    <div class="card-post">
       <!-- need to get note-key(id) and route. -->
-      <div class="square">
+      <div class="square" @click="goBookNote">
         <div class="board-info">
           <a class="entry">#{{ bookNote.index }}</a>
-          <a class="range">{{ bookNote.range1 }}~{{ bookNote.range2 }}p</a>
+          <a class="range" :range_text="rangeText">{{ range_text }}</a>
         </div>
         <div class="representative">
           <div class="title">{{ bookNote.title }}</div>
           <div class="post-info">
             <!-- local date format -->
             <!--                    <a class="date">4 JUN 2020</a><br>-->
-            <a class="date">{{ bookNote.date }}</a
-            ><br />
+            <a class="date">{{ bookNote.date }}</a><br/>
+            <div class="status">
             <!-- view icon -->
-            <img class="icon" id="eye" src="../assets/view.png" />
-            <a class="view">{{ bookNote.view }}</a>
+              <img class="icon" id="eye" src="../assets/view.png" />
+              <a class="view">{{ bookNote.view }}</a>
             <!-- up icon -->
-            <img class="icon" id="thumbs" src="../assets/thumbs.png" />
-            <a class="up">{{ bookNote.up }}</a>
+              <img class="icon" id="thumbs" src="../assets/thumbs.png" />
+              <a class="up">{{ bookNote.up }}</a>
+            </div>
           </div>
         </div>
         <div class="content-box">
-          <p class="content">{{ bookNote.content }}</p>
+          <p class="content" v-html="bookNote.content"></p>
           <!-- change author name -->
           <a class="author">{{ bookNote.userId }}</a>
         </div>
@@ -42,12 +43,33 @@ export default {
       type: Object
     }
   },
+  data() {
+    return {
+      range_text: ""
+    };
+  },
   methods: {
     goBookNote() {
       selectedBookNote.splice(0, selectedBookNote.length);
       console.log(selectedBookNote);
       selectedBookNote.push(this.bookNote);
       console.log(selectedBookNote);
+    }
+  },
+  computed: {
+    rangeText() {
+      if (this.bookNote.isWholeBook === true) {
+        console.log("Whole Book");
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.range_text = "Whole Book";
+        return this.range_text;
+      } else {
+        console.log("p." + this.bookNote.range1 + " ~ " + this.bookNote.range2);
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.range_text =
+          this.bookNote.range1 + " ~ " + this.bookNote.range2 + "p";
+        return this.range_text;
+      }
     }
   }
 };
@@ -78,7 +100,15 @@ export default {
   -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
+a:visited{
+  text-decoration: none;
+  color: #3a3a3a;
+}
 
+a:link{
+  text-decoration: none;
+  color: #3a3a3a;
+}
 .board-info {
   margin: auto;
   padding-top: 20px;
@@ -114,6 +144,11 @@ export default {
 }
 
 .post-info {
+  float: right;
+  position: relative;
+}
+
+.status {
   float: right;
   position: relative;
 }

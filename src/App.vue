@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <div class="nav" v-if="isNotSignInPage()&&isNotBoardPage()">
-      <nav-bar></nav-bar>
-    </div>
-    <div class="nav2" v-else-if="isNotSignInPage()&&isBoardPage()">
-      <nav-bar></nav-bar>
-    </div>
-    <div class="bar" v-if="isNotHome() && isNotSignInPage()">
-      <search-bar/>
+    <div class="top">
+      <div class="nav" v-if="isNotSignInPage()">
+        <nav-bar></nav-bar>
+      </div>
+      <div class="bar" v-if="isNotHome() && isNotSignInPage()">
+        <search-bar/>
+      </div>
     </div>
     <div class="view">
       <router-view/>
@@ -53,7 +52,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -63,8 +67,16 @@ export default {
   position: relative;
 }
 
+.top {
+  position:-webkit-sticky;
+  position: sticky;
+  margin-top: -100px;
+  z-index: 3;
+  top: 0;
+}
+
 .nav {
-  position: fixed;
+  position: absolute;
   background: white;
   top: 0;
   left: 0;
@@ -82,7 +94,7 @@ export default {
 }
 
 .bar {
-  position: fixed;
+  position: absolute;
   top: 25.5px;
   left: 340px;
   z-index: 2;
@@ -90,8 +102,7 @@ export default {
 
 .view {
   position: relative;
-  margin-top: 80px;
+  padding-top: 180px;
 }
-
 
 </style>

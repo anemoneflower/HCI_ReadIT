@@ -15,6 +15,7 @@
 // @ is an alias to /src
 import NoteBox from "@/components/NoteBox.vue";
 import { selectedBookNote } from "../main";
+import { db } from "../main";
 
 export default {
   name: "ReadMyNote",
@@ -28,6 +29,14 @@ export default {
     return {
       bookNote: selectedBookNote[0]
     };
+  },
+  created() {
+    db.ref("bookNote")
+      .child(this.noteKey)
+      .update({
+        view: this.bookNote.view + 1
+      });
+    this.bookNote.view = this.bookNote.view + 1;
   }
 };
 </script>

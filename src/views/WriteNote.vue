@@ -74,7 +74,7 @@
 <script>
 // import firebase from "firebase";
 import { db } from "../main";
-import { userKey, selectedBook } from "../main";
+import { userKey, selectedBook, selectedBookNote } from "../main";
 
 export default {
   name: "WriteNote",
@@ -117,7 +117,7 @@ export default {
 
       console.log(date);
 
-      var noteKey = db.ref("bookNote").push({
+      var bookNote = {
         title: this.title,
         date: date.join(" "),
         isWholeBook: this.isWholeBook,
@@ -133,13 +133,18 @@ export default {
 
         view: 0,
         up: 0
-      }).key;
+      };
+
+      var noteKey = db.ref("bookNote").push(bookNote).key;
       db.ref("bookNote")
         .child(noteKey)
         .update({
           _key: noteKey
         });
       // TODO: set routing
+      selectedBookNote.splice(0, selectedBookNote.length);
+      console.log(selectedBookNote);
+      selectedBookNote.push(bookNote);
       this.$router.push({ path: `/read-note/${noteKey}` });
     }
   }

@@ -29,21 +29,31 @@ export default {
   },
   created() {
     bookNoteList.splice(0, bookNoteList.length);
+    console.log("bookNoteList");
+    console.log(bookNoteList);
     firebase.database().ref('/bookNote').once('value',function(snapshot){
 
       var myValue = snapshot.val();
       var keyList = Object.keys(myValue);
+      // var index=1;
       for(var i=keyList.length;i>0;i--) {
         var myKey = keyList[i-1];
         var book = myValue[myKey].bookKey;
+        var share = myValue[myKey].share;
         //if(myValue[myKey].title = "booktitle") 로 바꿔줘야함.
-        if (book == selectedBook[0].key) {
+        if (book == selectedBook[0].key && share) {
           var myBookNote = myValue[myKey];
-          myBookNote.index = keyList.length-i+1;
+          // myBookNote.index = index;
+          // index++;
+          // console.log(myBookNote);
           bookNoteList.push(myBookNote);
         }
       }
-      console.log(bookNoteList);
+      for(var j=0;j<bookNoteList.length;j++){
+        var bookNote = bookNoteList[j];
+        console.log(bookNoteList.length);
+        bookNote.index = bookNoteList.length-j;
+      }
     });
   }
 }

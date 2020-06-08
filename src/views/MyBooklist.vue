@@ -27,6 +27,7 @@
         },
         created() {
             myBookNotes.splice(0, myBookNotes.length);
+            myBooks.splice(0, myBooks.length);
             var bookKeys = new Array();
             var user = userKey[0].key;
             firebase.database().ref('/bookNote').once('value',function(snapshot){
@@ -51,6 +52,9 @@
                 var myValue = snapshot.val();
                 for(var j=0;j<bookKeys.length;j++){
                     var myBook =myValue[bookKeys[j]];
+                    var bookKey = bookKeys[j];
+                    console.log("BOOKKEY"+bookKey);
+                    myBook.key = bookKey;
                     myBooks.push(myBook);
                 }
 

@@ -35,6 +35,7 @@ export const selectedBook = new Array();
 export const selectedBookNote = new Array();
 export const myBooks = new Array();
 export const myBookNotes = new Array();
+export const selectedMyBook = new Array();
 
 
 

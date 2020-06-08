@@ -1,6 +1,6 @@
-<template>
-  <div class="autocomplete">
-    <ul class="popover">
+<template >
+  <div class="autocomplete" >
+    <ul class="popover" >
       <li>
         <input
           autocomplete="off"
@@ -13,7 +13,7 @@
           @keydown.enter="enter"
           v-focus
           @focus="visibleOptions = true"
-          @focusout="visibleOptions = false"
+          @focusout="visibleOptions=false"
         />
         <a
           ><img
@@ -23,13 +23,14 @@
             title="this is search bar"
         /></a>
       </li>
-<!--      <li v-if="visibleOptions">-->
-      <div class="options" ref="optionsList">
-        <ul>
+<!--      <li  v-if="visibleOptions" >-->
+      <div class="options" ref="optionsList" @focusout="selectAction=false">
+        <ul >
           <li
+                  @focuson = "selectAction=true"
             :key="index"
             v-for="(match, index) in matches"
-            @click="bookSelected(index)"
+            @mousedown="bookSelected(index), visibleOptions=true"
             @mouseenter="hover(index)"
             :class="{ selected: selected == index }"
             v-text="match"
@@ -54,7 +55,7 @@ export default {
       visibleOptions: true,
       selected: 0,
       keyDown: false,
-      previous: ""
+      selectAction : false
     };
   },
   directives: {
@@ -64,8 +65,12 @@ export default {
       }
     }
   },
+  created() {
+    this.selectAction=false;
+  },
   methods: {
     bookSelected(index) {
+      this.selectAction = true;
       this.selected = index;
       this.title = this.matches[index];
       this.selectedBook = this.matches[index];
@@ -96,22 +101,23 @@ export default {
       this.$router.push("/book-list");
     },
     hover(index) {
+      // this.selectAction = true;
       this.selected = index;
     },
     keyup() {
-      this.keyDown = true;
+      // this.keyDown = true;
       if (this.selected == 0) {
         return;
       }
       this.selected -= 1;
-      this.title = this.matches[this.selected];
+      // this.title = this.matches[this.selected];
       this.scroll();
     },
     keydown() {
-      this.keyDown = true;
+      // this.keyDown = true;
       if (this.selected < this.matches.length - 1) {
         this.selected += 1;
-        this.title = this.matches[this.selected];
+        // this.title = this.matches[this.selected];
         this.scroll();
       }
     },
@@ -122,6 +128,14 @@ export default {
       this.title = this.matches[this.selected];
       this.selectedBook = this.matches[this.selected];
       this.searchBook();
+    },
+    checkVisible(){
+      if(this.selectAction==true){
+        this.visibleOptions=true;
+      }
+      else{
+        this.visibleOptions=false;
+      }
     }
   },
   computed: {
@@ -129,7 +143,9 @@ export default {
       if (this.title == "") {
         return [];
       }
-     
+      if(this.visibleOptions==false&&this.selectAction==false){
+        return [];
+      }
       // if (this.keyDown == true) {
       //   return;
       // }

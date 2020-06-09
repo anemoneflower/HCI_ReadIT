@@ -1,4 +1,8 @@
 # KAIST CS374: ReadIT!
+Seoyun Son (sallylucky@kaist.ac.kr)   
+Chaeeun Hwang (navy3690@kaist.ac.kr)   
+Siwon Kim (coolofficials@gmail.com)   
+
 
 ## WebPage URL
 https://hci-readit.web.app/

@@ -41,13 +41,6 @@ const routes = [
     props: true
   },
   {
-    path: "/search",
-    name: "SearchPage",
-    component: function() {
-      return import("../views/Searchpage.vue");
-    }
-  },
-  {
     path: "/book-list",
     name: "Booklist",
     component: function() {

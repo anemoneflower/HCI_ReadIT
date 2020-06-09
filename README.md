@@ -25,7 +25,7 @@ components: Components that used for pages in View folder
 - __NavBar.vue__: Component used in app.vue  
 - __NoteBox.vue__: Conponent used in ReadNote.vue   
 - __SearchBar.vue__: Component for search bar function. Used in Home.vue and App.vue   
-_other files are unused in current deploy version_   
+- _other files are unused in current deploy version_   
 
 views: Components that used for pages   
 - __BookNoteBoard.vue__: Book note list   
@@ -36,7 +36,7 @@ views: Components that used for pages
 - __ReadNote.vue__: Read note page for mypage   
 - __SignIn.vue__: Sign in page   
 - __WriteNote.vue__: Write note page   
-_other files are unused in current deploy version_   
+- _other files are unused in current deploy version_   
 
 router/__index.js__: set routing
 

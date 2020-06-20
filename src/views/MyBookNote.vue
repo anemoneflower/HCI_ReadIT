@@ -6,6 +6,7 @@
         v-for="bookNote in bookNotes"
         :key="bookNote.id"
         :bookNote="bookNote"
+        :bookKey="bookKey"
       >
       </card>
     </ul>
@@ -22,6 +23,9 @@ import { bookNoteList, myBookNotes, selectedMyBook } from "../main";
 export default {
   components: {
     Card
+  },
+  props: {
+    bookKey: String
   },
   data() {
     return {

@@ -27,6 +27,9 @@ export default {
   components: {
     Book
   },
+  props: {
+    bookKey: String
+  },
   data() {
     return {
       books: searchedList
@@ -34,12 +37,13 @@ export default {
   },
   methods: {
     goBoard(index) {
+      /* var _selectedBook = selectedBook; */
       selectedBook.splice(0, selectedBook.length);
       var selected = this.books[index];
       selectedBook.push(selected);
       console.log(selectedBook.length);
       console.log(selected);
-      this.$router.push("/book-note-board");
+      this.$router.push("/book-note-board/"+ selected.key);
     }
   }
 };

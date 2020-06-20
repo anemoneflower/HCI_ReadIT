@@ -27,6 +27,9 @@ export default {
   components: {
     Book
   },
+  props: {
+    bookKey: String
+  },
   created() {
     myBookNotes.splice(0, myBookNotes.length);
     myBooks.splice(0, myBooks.length);
@@ -78,7 +81,10 @@ export default {
       selectedMyBook.splice(0, selectedMyBook.length);
       var selected = this.books[index];
       selectedMyBook.push(selected);
-      this.$router.push("/my-note");
+      var curPath = this.$router.history.current["path"];
+      var trim = curPath.split("/");
+      this.$router.push("/my-note/" + trim[trim.length - 1]);
+      /* this.$router.push("/my-note"); */
       // console.log(selectedMyBook.length);
       // console.log(selected);
     }

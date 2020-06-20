@@ -23,7 +23,8 @@ export default {
     NoteBox
   },
   props: {
-    noteKey: String
+    noteKey: String,
+    bookKey: String
   },
   data() {
     return {

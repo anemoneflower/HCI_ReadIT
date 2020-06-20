@@ -15,6 +15,7 @@
 // // import firebase from "firebase";
 
 export default {
+  name: "Book",
   props: {
     book: {
       type: Object

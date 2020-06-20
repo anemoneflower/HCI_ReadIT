@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="top">
-      <div class="nav" v-if="isNotSignInPage()">
-        <nav-bar></nav-bar>
+      <div class="nav" v-if="isNotSignInPage() && isBookSelected()">
+        <nav-bar :key="selected"></nav-bar>
       </div>
       <div class="bar" v-if="isNotHome() && isNotSignInPage()">
         <search-bar />
@@ -23,7 +23,19 @@ export default {
     NavBar,
     SearchBar
   },
+  data: function(){
+    return {
+      selected: false
+    };
+  },
   methods: {
+    isBookSelected() {
+      var curPath = this.$router.history.current["path"];
+      var trim = curPath.split("/");
+      console.log(`select check -app: ${trim[trim.length - 1]}`);
+      this.selected = trim[trim.length - 1].length > 10;
+      return true;
+    },
     isNotHome() {
       return this.$router.history.current["path"] != "/";
     },

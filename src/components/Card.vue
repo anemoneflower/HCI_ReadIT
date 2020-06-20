@@ -1,7 +1,12 @@
 <template>
   <!--    <router-link :to="/read-note/${bookNote.key}">:to="{ name: 'user', params: { userId: 123 }}"-->
   <div class="card-post">
-    <router-link :to="{ name: 'ReadNote', params: { noteKey: bookNote._key } }">
+    <router-link
+      :to="{
+        name: 'ReadNote',
+        params: { noteKey: bookNote._key, bookKey: bookKey }
+      }"
+    >
       <!-- need to get note-key(id) and route. -->
       <div class="square" @click="goBookNote">
         <div class="board-info">
@@ -42,7 +47,8 @@ export default {
   props: {
     bookNote: {
       type: Object
-    }
+    },
+    bookKey: String
   },
   data() {
     return {

@@ -2,48 +2,51 @@
   <div
     class="wrap"
     :style="[
-      quizIsOpen || bookNoteIsOpen
+      readNoteIsOpen || writeNoteIsOpen
         ? { height: '180px', transition: 'all 0.1s ease' }
         : { height: '100px', transition: 'all 0.3s ease' }
     ]"
   >
-    <router-link to="/"
-      ><img id="banner" src="../assets/logo.png"
-    /></router-link>
-    <!-- <ul v-if="isSignIn" class="main-menu"> -->
+    <img id="banner" src="../assets/logo.png" @click="goHome" />
     <ul
       class="main-menu"
-      id="booknote"
-      @mouseleave="bookNoteIsOpen = false"
-      v-if="isSignIn"
-      v-on:click="select()"
+      id="booknote-read"
+      @mouseleave="readNoteIsOpen = false"
+      @click="goReadNote"
+      v-if="isBookSelected()"
     >
       <li>
-        <a @mouseover="bookNoteIsOpen = true">BookNotes</a>
-        <ul id="booknote-submenu" v-if="bookNoteIsOpen">
-          <li @click="goReadNote">
-            <a @click="bookNoteIsOpen = false">Read Notes</a>
-          </li>
-          <li @click="goWriteNote">
-            <a @click="bookNoteIsOpen = false">Write Note</a>
-          </li>
-        </ul>
+        <a @mouseover="readNoteIsOpen = true">Read Notes</a>
+        <img
+          v-if="readNoteIsOpen"
+          class="thumbnail"
+          :src="getSelectedBook()"
+          style="position: relative;"
+        />
+        <!-- <Book v-if="readNoteIsOpen" :book="getSelectedBook" /> -->
       </li>
     </ul>
-    <!-- <ul class="main-menu" id="quiz" @mouseleave="quizIsOpen = false" v-if="isSignIn && isSelected">
-            <li><a @mouseover="quizIsOpen = true">Quiz</a>
-                <ul id="quiz-submenu" v-if="quizIsOpen">
-                    <li><router-link to="/solve-quiz"><a @click="quizIsOpen = false">Solve Quiz</a></router-link></li>
-                    <li><router-link to="/make-quiz"><a @click="quizIsOpen = false">Make Quiz</a></router-link></li>
-                </ul>
-            </li>
-        </ul> -->
+    <ul
+      class="main-menu"
+      id="booknote-write"
+      @mouseleave="writeNoteIsOpen = false"
+      @click="goWriteNote"
+      v-if="isSignIn && isBookSelected()"
+    >
+      <li>
+        <a @mouseover="writeNoteIsOpen = true">Write Notes</a>
+        <img
+          v-if="writeNoteIsOpen"
+          class="thumbnail"
+          :src="getSelectedBook()"
+          style="position: relative;"
+        />
+      </li>
+    </ul>
     <div class="certification">
-      <router-link to="/my-page"
-        ><button id="my-page-button" v-if="isSignIn" title="go to mypage">
-          {{ userSignIn }}
-        </button></router-link
-      >
+      <button id="my-page-button" v-if="isSignIn" title="go to mypage" @click="goMyPage">
+          My Notes
+      </button>
       <router-link to="/sign-in"
         ><button id="sign-in-button" @click="goSignIn" v-if="isSignIn == false">
           Sign In
@@ -56,48 +59,77 @@
 <script>
 // import firebase from "firebase";
 // import {userList} from "../main";
-
-import { current, isSignIn, selectedBook, userKey } from "../main";
+import { bookList, current, isSignIn, selectedBook, userKey } from "../main";
 
 export default {
   data: function() {
     return {
       isSelected: true,
       isSignIn: isSignIn[0],
-      bookNoteIsOpen: false,
+      readNoteIsOpen: false,
+      writeNoteIsOpen: false,
       quizIsOpen: false,
       selected: selectedBook.length
     };
   },
   methods: {
+    isBookSelected() {
+      var curPath = this.$router.history.current["path"];
+      var trim = curPath.split("/");
+      console.log(`select check: ${trim[trim.length - 1]}`);
+      return trim[trim.length - 1].length > 10;
+    },
+    goHome() {
+      var curPath = this.$router.history.current["path"];
+      console.log(`curpath: ${curPath}`);
+      if (curPath === "/") return;
+      var trim = curPath.split("/");
+      console.log(`select check - banner: ${trim[trim.length - 1]}`);
+      if (trim[trim.length - 1].length > 10)
+        this.$router.push("/selected-book/" + trim[trim.length - 1]);
+      else this.$router.push("/");
+    },
+    goMyPage() {
+      var curPath = this.$router.history.current["path"];
+      var trim = curPath.split("/");
+      if (trim[trim.length - 1].length > 10)
+        this.$router.push("/my-page/" + trim[trim.length - 1]);
+      else this.$router.push("/my-page/none");
+    },
     goSignIn() {
       var currentUrl = this.$router.history.current["path"];
       current.push(currentUrl);
-      // console.log(currentUrl);
-      //     firebase.database().ref('/user/').once('value',function(snapshot){
-      //         var myValue = snapshot.val();
-      //         var keyList = Object.keys(myValue);
-      //
-      //         for(var i=0;i<keyList.length;i++) {
-      //             var myKey = keyList[i];
-      //             userList.push(myValue[myKey]);
-      //         }
-      //     });
-      //     console.log(userList);
-      // }
     },
     goReadNote() {
       if (selectedBook.length == 0) {
         alert("Please search & select book!");
       } else {
-        this.$router.push("/book-note-board");
+        var curPath = this.$router.history.current["path"];
+        var trim = curPath.split("/");
+        var bookKey = trim[trim.length - 1];
+        this.$router.push("/book-note-board/"+ bookKey);
       }
     },
     goWriteNote() {
       if (selectedBook.length == 0) {
         alert("Please search & select book!");
       } else {
-        this.$router.push("/write-note");
+        var curPath = this.$router.history.current["path"];
+        var trim = curPath.split("/");
+        var bookKey = trim[trim.length - 1];
+        this.$router.push("/write-note/"+ bookKey);
+      }
+    },
+    getSelectedBook() {
+      var curPath = this.$router.history.current["path"];
+      var trim = curPath.split("/");
+      console.log(`select check - get: ${trim[trim.length - 1]}`);
+      for (var i = 0; i < bookList.length; i++) {
+        var key = bookList[i].key;
+        if (key === trim[trim.length - 1]) {
+          console.log("found!!!!!"+bookList[i].title);
+          return bookList[i].img;
+        }
       }
     }
   },
@@ -111,6 +143,7 @@ export default {
     //     }
     // },
     userSignIn() {
+      console.log(this.selected);
       if (userKey.length == 0) {
         return;
       } else {
@@ -126,7 +159,14 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.thumbnail {
+  background: black;
+  height: 70%;
+  width: 60%;
+  margin: auto;
+  overflow: hidden;
+  display: block;
+}
 .wrap {
   position: relative;
   min-width: 1300px;
@@ -143,9 +183,9 @@ body {
   left: 0%;
 }
 
-a:hover {
+/* a:hover {
   text-decoration: underline;
-}
+} */
 
 a:visited {
   text-decoration: none;
@@ -166,11 +206,19 @@ a:link {
   cursor: pointer;
 }
 
-#booknote {
+#booknote-read {
   position: absolute;
   display: inline-block;
   top: 27px;
-  right: 130px;
+  right: 100px;
+  width: 160px;
+}
+
+#booknote-write {
+  position: absolute;
+  display: inline-block;
+  top: 27px;
+  right: 260px;
   width: 160px;
 }
 

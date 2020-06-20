@@ -34,7 +34,7 @@
       v-if="isSignIn && isBookSelected()"
     >
       <li>
-        <a @mouseover="writeNoteIsOpen = true">Write Notes</a>
+        <a @mouseover="writeNoteIsOpen = true">Write Note</a>
         <img
           v-if="writeNoteIsOpen"
           class="thumbnail"
@@ -215,7 +215,7 @@ a:link {
   position: absolute;
   display: inline-block;
   top: 27px;
-  right: 100px;
+  right: 120px;
   width: 160px;
 }
 
@@ -223,7 +223,7 @@ a:link {
   position: absolute;
   display: inline-block;
   top: 27px;
-  right: 260px;
+  right: 280px;
   width: 160px;
 }
 

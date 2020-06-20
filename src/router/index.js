@@ -50,7 +50,7 @@ const routes = [
       return import("../views/Booklist.vue");
     }
   },
-/*   {
+  /*   {
     path: "/make-quiz",
     name: "MakeQuiz",
     component: function() {
@@ -91,7 +91,7 @@ const routes = [
     path: "/selected-book/:bookKey",
     name: "Home2",
     component: Home2,
-    props: (route) => ({ bookKey: route.params.bookKey || 'default' })
+    props: route => ({ bookKey: route.params.bookKey || "default" })
   }
 ];
 

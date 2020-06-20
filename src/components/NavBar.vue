@@ -44,8 +44,13 @@
       </li>
     </ul>
     <div class="certification">
-      <button id="my-page-button" v-if="isSignIn" title="go to mypage" @click="goMyPage">
-          My Notes
+      <button
+        id="my-page-button"
+        v-if="isSignIn"
+        title="go to mypage"
+        @click="goMyPage"
+      >
+        My Notes
       </button>
       <router-link to="/sign-in"
         ><button id="sign-in-button" @click="goSignIn" v-if="isSignIn == false">
@@ -107,7 +112,7 @@ export default {
         var curPath = this.$router.history.current["path"];
         var trim = curPath.split("/");
         var bookKey = trim[trim.length - 1];
-        this.$router.push("/book-note-board/"+ bookKey);
+        this.$router.push("/book-note-board/" + bookKey);
       }
     },
     goWriteNote() {
@@ -117,7 +122,7 @@ export default {
         var curPath = this.$router.history.current["path"];
         var trim = curPath.split("/");
         var bookKey = trim[trim.length - 1];
-        this.$router.push("/write-note/"+ bookKey);
+        this.$router.push("/write-note/" + bookKey);
       }
     },
     getSelectedBook() {
@@ -127,7 +132,7 @@ export default {
       for (var i = 0; i < bookList.length; i++) {
         var key = bookList[i].key;
         if (key === trim[trim.length - 1]) {
-          console.log("found!!!!!"+bookList[i].title);
+          console.log("found!!!!!" + bookList[i].title);
           return bookList[i].img;
         }
       }

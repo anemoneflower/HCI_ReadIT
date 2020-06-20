@@ -23,7 +23,7 @@ export default {
     NavBar,
     SearchBar
   },
-  data: function(){
+  data: function() {
     return {
       selected: false
     };

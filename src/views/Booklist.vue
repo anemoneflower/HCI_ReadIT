@@ -43,7 +43,7 @@ export default {
       selectedBook.push(selected);
       console.log(selectedBook.length);
       console.log(selected);
-      this.$router.push("/book-note-board/"+ selected.key);
+      this.$router.push("/book-note-board/" + selected.key);
     }
   }
 };

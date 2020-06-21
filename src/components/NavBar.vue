@@ -187,6 +187,7 @@ body {
   position: absolute;
   top: 12px;
   left: 0%;
+  cursor: pointer;
 }
 
 /* a:hover {

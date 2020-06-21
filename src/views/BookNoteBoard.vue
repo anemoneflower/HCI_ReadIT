@@ -34,6 +34,7 @@
         v-for="bookNote in bookNotes"
         :key="bookNote.id"
         :bookNote="bookNote"
+        :bookKey="bookKey"
       >
       </card>
     </ul>
@@ -52,6 +53,9 @@ export default {
   components: {
     Card
   },
+  props: {
+    bookKey: String
+  },
   data() {
     return {
       bookNotes: [],
@@ -64,6 +68,7 @@ export default {
     bookNoteList.splice(0, bookNoteList.length);
     console.log("bookNoteList");
     console.log(bookNoteList);
+    console.log(`key: ${this.bookKey}`);
     firebase
       .database()
       .ref("/bookNote")

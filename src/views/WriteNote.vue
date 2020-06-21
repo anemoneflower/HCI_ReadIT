@@ -16,7 +16,7 @@
         />
       </div>
       <div class="inputRows">
-        <p class="tags">Range</p>
+        <p class="tags">Page No.</p>
         <div id="rangeGroup">
           <input
             class="rangeInput inputBorder"
@@ -78,6 +78,9 @@ import { userKey, selectedBook, selectedBookNote } from "../main";
 
 export default {
   name: "WriteNote",
+  props: {
+    _bookKey: String
+  },
   data() {
     return {
       userKey: userKey[0].key,
@@ -145,7 +148,7 @@ export default {
       selectedBookNote.splice(0, selectedBookNote.length);
       console.log(selectedBookNote);
       selectedBookNote.push(bookNote);
-      this.$router.push({ path: `/read-note/${noteKey}` });
+      this.$router.push({ path: `/read-note/${noteKey}/${this.bookKey}` });
     }
   }
 };

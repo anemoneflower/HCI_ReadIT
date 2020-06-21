@@ -105,7 +105,12 @@ export default {
           }
         }
       }
-      this.$router.push("/book-list");
+      var curPath = this.$router.history.current["path"];
+      var trim = curPath.split("/");
+      console.log(`select check: ${trim[trim.length - 1]}`);
+      if (trim[trim.length - 1].length > 10)
+        this.$router.push("/book-list/" + trim[trim.length - 1]);
+      else this.$router.push("/book-list/none");
       this.visibleOptions = false;
       this.selectAction = false;
       this.title = "";

@@ -5,7 +5,7 @@
       <!-- need to get note-key(id) and route. -->
       <div class="square" @click="goBookNote">
         <div class="board-info">
-          <a class="entry">#{{ bookNote.index }}</a>
+          <a class="entry" >#{{ bookNote.index}}</a>
           <a class="range" :range_text="rangeText">{{ range_text }}</a>
         </div>
         <div class="representative">
@@ -28,7 +28,7 @@
         <div class="content-box">
           <p class="content" v-html="bookNote.content"></p>
           <!-- change author name -->
-          <a class="author">{{ bookNote.userId }}</a>
+          <a class="author">by. {{ bookNote.userId }}</a>
         </div>
       </div>
     </router-link>

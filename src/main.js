@@ -36,6 +36,7 @@ export const selectedBookNote = new Array();
 export const myBooks = new Array();
 export const myBookNotes = new Array();
 export const selectedMyBook = new Array();
+export const pageNum = new Array();
 
 firebase
   .database()

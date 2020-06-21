@@ -1,8 +1,33 @@
 <template>
   <div>
-    <div class="page-info">
-      <div>BookNotes : {{ book.title }}</div>
-      <!-- <div class="title">{{ book.title }}</div> -->
+      <div class="head">
+        <div class="page-info" >BookNotes : {{ book.title }}</div>
+          <div class="searchPage">
+<!--              <div class="pageText" >Search for page</div>-->
+              <div class="autocomplete">
+                    <input
+                            autocomplete="off"
+                            id="input"
+                            type="text"
+                            v-model="page"
+                            placeholder="Up to page no."
+                            :disabled="isWhole==true"
+                    /><a
+                  ><img
+                          class="glass"
+                          src="../assets/magnifying-glass.png"
+                          @click="searchBookNote()"
+                          title="this is search bar"
+                  /></a>
+              </div>
+              <div class="whole">
+                  <input type="checkbox" value="1" id="isWhole" v-model="isWhole"/>
+                  <label class="label" for="isWhole">Whole page</label>
+              </div>
+<!--              <div class="searchBtm">-->
+<!--                  <button id="btn" @click="searchBookNote">Search</button>-->
+<!--              </div>-->
+          </div>
     </div>
     <ul class="bookNoteList" v-if="bookNotes.length">
       <card
@@ -20,7 +45,7 @@
 
 <script>
 import Card from "../components/Card.vue";
-import { bookNoteList, selectedBook } from "../main";
+import {bookNoteList, pageNum, selectedBook} from "../main";
 import firebase from "firebase";
 
 export default {
@@ -29,11 +54,13 @@ export default {
   },
   data() {
     return {
-      bookNotes: bookNoteList,
-      book: selectedBook[0]
+      bookNotes: [],
+      book: selectedBook[0],
+        page: "",
+        isWhole : false
     };
   },
-  created() {
+  mounted() {
     bookNoteList.splice(0, bookNoteList.length);
     console.log("bookNoteList");
     console.log(bookNoteList);
@@ -62,12 +89,69 @@ export default {
           console.log(bookNoteList.length);
           bookNote.index = bookNoteList.length - j;
         }
+
       });
-  }
+      this.bookNotes = bookNoteList;
+      console.log("PAGE"+pageNum);
+  },
+    methods:{
+      searchBookNote(){
+          var page = this.page;
+          var noteList = bookNoteList;
+          var newNote = new Array();
+          pageNum.splice(0,pageNum.length);
+          if(page==""){
+              return [];
+          }
+          if(this.isWhole==false){
+              for(var i=0;i<noteList.length;i++){
+                  // console.log("NEWNOTE"+newNote);
+                  if(noteList[i].range2<=page&&noteList[i].isWholeBook != true){
+                      var arr2 = JSON.parse(JSON.stringify(noteList[i]));
+                      newNote.push(arr2);
+                  }
+              }
+              for(var j=0;j<newNote.length;j++){
+                  // newNote[j].index = newNote.length - j;
+                  console.log(newNote[j].index);
+                  newNote[j].index = newNote.length - j;
+                  console.log(newNote[j].index);
+              }
+              this.bookNotes = newNote;
+              pageNum.push(page);
+          }
+          else{
+              this.bookNotes = bookNoteList;
+              this.page = "";
+          }
+
+      }
+    }
 };
 </script>
 <style scoped>
-.page-info {
+    .head{
+        width: 100%;
+        position: relative;
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+.searchPage{
+    width:300px;
+    position: absolute;
+    /*left : 1000px;*/
+    left: 1350px;
+    right: 500px;
+    /*margin-top: 100px;*/
+    top:60px;
+    height: 200px;
+    z-index:2;
+    /*border: solid 2px;*/
+    /*display: grid;*/
+    /*grid-template-columns: 50px 50px;*/
+    /*padding-top: 30px;*/
+}
+    .page-info {
   position: relative;
   text-align: left;
   font-size: 25px;
@@ -78,8 +162,81 @@ export default {
   position: relative;
   padding-top: 20px;
 }
-/* .title {
+
+#input {
+    /*margin-right: 0px;*/
+    margin-left:10px;
+    margin-top: 3px;
+    width: 100px;
+    outline: none;
+    border: none;
+    height: 38px;
+    font-size: 15px;
+}
+
+.autocomplete {
+    /*margin: 0 auto;*/
+    /*align-items: end;*/
+    /*margin-left: 600px;*/
+    /*text-align: right;*/
+    /*font-size: 25px;*/
+    /*margin-top: 50px;*/
+    margin-left: 75px;
+    width: 180px;
+    height: 45px;
+    border: 1px solid #dcdcdc;
     position: relative;
-    float: left;
-  } */
+    border-radius: 23px;
+    list-style-type: none;
+}
+
+.autocomplete:hover {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+
+/*.autocomplete:focus-within {*/
+/*    box-shadow: 1px 1px 8px 1px #dcdcdc;*/
+/*    outline: none;*/
+/*}*/
+
+.glass {
+    height: 20px;
+    position: relative;
+    top: 4px;
+    margin-right:9px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.whole{
+    position: relative;
+    margin-right: 10px;
+    margin-top:15px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    /*top:83px;*/
+    /*right: 600px;*/
+    /*margin: auto;*/
+}
+.pageText{
+    position: relative;
+    font-size:20px;
+    font-style: oblique;
+    padding-bottom: 25px;
+}
+    #btn {
+        position: relative;
+        height: 40px;
+        width: 100px;
+        border-radius: 10px;
+        background-color: #f37022;
+        color: white;
+        border: 0px;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-right: ;
+        /*font-weight: bold;*/
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+    }
 </style>

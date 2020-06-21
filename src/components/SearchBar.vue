@@ -79,21 +79,26 @@ export default {
       this.searchBook();
     },
     searchBook() {
+      if(this.title==""){
+        return [];
+      }
       searchedList.splice(0, searchedList.length);
       var book = this.title;
       var checkList = JSON.parse(JSON.stringify(bookList));
+      console.log(checkList);
       var idx = 0;
       for (var i = 0; i < bookList.length; i++) {
         var title = bookList[i].title.toUpperCase();
         var checkValue = title.indexOf(book.toUpperCase());
+        console.log(checkValue);
         if (checkValue != -1) {
           searchedList.push(bookList[i]);
           checkList.splice(i + idx, 1);
           idx--;
         }
       }
-      // console.log(checkList);
-      if (checkList.length != 0) {
+
+      if (checkList.length != 14) {
         for (var j = 0; j < checkList.length; j++) {
           if (searchedList[0].series == checkList[j].series) {
             searchedList.push(checkList[j]);

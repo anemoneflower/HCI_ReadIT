@@ -125,8 +125,12 @@ export default {
 
 .description {
   display: none;
-  color: #cdcdcd;
-  font-size: 10px;
+  /*color: #3a3a3a;*/
+  color: #f37022;
+  /*color: #959595;*/
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .book-wrap:hover .description {

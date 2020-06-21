@@ -103,10 +103,14 @@ export default {
           if(page==""){
               return [];
           }
+          if(isNaN(page)){
+              alert("Please input valid page number!");
+              return this.page = "";
+          }
           if(this.isWhole==false){
               for(var i=0;i<noteList.length;i++){
                   // console.log("NEWNOTE"+newNote);
-                  if(noteList[i].range2<=page&&noteList[i].isWholeBook != true){
+                  if(parseInt(noteList[i].range2)<=page&&noteList[i].isWholeBook != true){
                       var arr2 = JSON.parse(JSON.stringify(noteList[i]));
                       newNote.push(arr2);
                   }

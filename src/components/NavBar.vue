@@ -3,7 +3,7 @@
     class="wrap"
     :style="[
       readNoteIsOpen || writeNoteIsOpen
-        ? { height: '180px', transition: 'all 0.1s ease' }
+        ? { height: '200px', transition: 'all 0.1s ease' }
         : { height: '100px', transition: 'all 0.3s ease' }
     ]"
   >
@@ -166,9 +166,10 @@ body {
 }
 .thumbnail {
   background: black;
-  height: 70%;
-  width: 60%;
+  /* height: 70%; */
+  width: 85px;
   margin: auto;
+  margin-top: 10px;
   overflow: hidden;
   display: block;
 }
@@ -276,7 +277,7 @@ a:link {
   padding: 8px 15px 10px 15px;
   font-size: 25px;
   position: absolute;
-  left: 100%;
+  left: 95%;
   top: 27px;
   cursor: pointer;
   outline: none;

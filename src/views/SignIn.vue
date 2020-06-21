@@ -1,8 +1,6 @@
 <template>
   <div class="container" @keyup.enter.up="keyPress">
-    <router-link to="/"
-      ><img id="banner" src="../assets/logo.png"
-    /></router-link>
+    <img id="banner" src="../assets/logo.png" @click="goHome" />
     <div class="id">
       <input
         id="inputId"
@@ -86,6 +84,16 @@ export default {
       } else {
         alert("Sign in is invalid");
       }
+    },
+    goHome() {
+      var curPath = current[0];
+      console.log(`curpath: ${curPath}`);
+      if (curPath === "/") return;
+      var trim = curPath.split("/");
+      console.log(`select check - banner: ${trim[trim.length - 1]}`);
+      if (trim[trim.length - 1].length > 10)
+        this.$router.push("/selected-book/" + trim[trim.length - 1]);
+      else this.$router.push("/");
     },
     keyPress() {
       var uid = this.userId;

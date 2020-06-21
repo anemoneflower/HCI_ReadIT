@@ -37,7 +37,12 @@ export default {
       return true;
     },
     isNotHome() {
-      return this.$router.history.current["path"] != "/";
+      var curPath = this.$router.history.current["path"];
+      if (curPath === "/") return false;
+      var trim = curPath.split("/");
+      console.log(`select check - banner: ${trim[trim.length - 1]}`);
+      if (trim[trim.length - 2] === "selected-book") return false;
+      return true;
     },
     isNotSignInPage() {
       return this.$router.history.current["path"] != "/sign-in";

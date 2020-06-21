@@ -7,9 +7,24 @@
     <link rel="icon" href="<%= BASE_URL %>favicon-xyz.png">
 <!--    <%= BASE_URL %>_favicon.ico">-->
     <title>ReadIT!</title>
+    <style>
+      df-messenger {
+        --df-messenger-bot-message: #fff;
+        --df-messenger-button-titlebar-color: #f37022;
+        --df-messenger-send-icon: #f37022;
+      }
+    </style>
 <!--      <%= htmlWebpackPlugin.options.title %></title>-->
   </head>
   <body>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      chat-icon="f04fe89f-acba-45b4-9888-520e03947111_x.png"
+      intent="WELCOME"
+      chat-title="ReaditGenie"
+      agent-id="fc9a0908-f5ef-466b-a688-111b7dbc5c1a"
+      language-code="en"
+    ></df-messenger>
     <noscript>
       <strong>We're sorry but READIT! doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>

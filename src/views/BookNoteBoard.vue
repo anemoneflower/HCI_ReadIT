@@ -10,7 +10,7 @@
                             id="input"
                             type="text"
                             v-model="page"
-                            placeholder="Up to page no."
+                            :placeholder= "changeText"
                             :disabled="isWhole==true"
                     /><a
                   ><img
@@ -21,7 +21,7 @@
                   /></a>
               </div>
               <div class="whole">
-                  <input type="checkbox" value="1" id="isWhole" v-model="isWhole"/>
+                  <input class ="checkBox" type="checkbox" value="1" id="isWhole" v-model="isWhole"/>
                   <label class="label" for="isWhole">Whole page</label>
               </div>
 <!--              <div class="searchBtm">-->
@@ -135,6 +135,16 @@ export default {
           }
 
       }
+    },
+    computed:{
+      changeText(){
+          if(this.isWhole==true){
+              return "Whole Page";
+          }
+          else{
+              return "Up to page no.";
+          }
+      }
     }
 };
 </script>
@@ -147,12 +157,13 @@ export default {
     }
 .searchPage{
     width:300px;
-    position: absolute;
+    position: -webkit-sticky;
+    position: sticky;
     /*left : 1000px;*/
     left: 1350px;
     right: 500px;
-    /*margin-top: 100px;*/
-    top:60px;
+    margin-bottom: -210px;
+    margin-top:55px;
     height: 200px;
     z-index:2;
     /*border: solid 2px;*/
@@ -222,9 +233,11 @@ export default {
     margin-top:15px;
     margin-bottom: 15px;
     font-size: 18px;
-    /*top:83px;*/
-    /*right: 600px;*/
-    /*margin: auto;*/
+
+}
+
+.checkBox{
+    cursor: pointer;
 }
 .pageText{
     position: relative;
@@ -242,7 +255,7 @@ export default {
         border: 0px;
         font-size: 18px;
         margin-top: 10px;
-        margin-right: ;
+        /*margin-right: ;*/
         /*font-weight: bold;*/
         cursor: pointer;
         outline: none;
